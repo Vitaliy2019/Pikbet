@@ -5,26 +5,7 @@
       <v-data-table :headers="headers" :items="desserts" style="width:100%">
         <template v-slot:items="props">
           <td>
-            <v-btn @click.stop="dialog = true">{{ props.item.name }}</v-btn>
-            <v-dialog v-model="dialog" max-width="390">
-              <v-card>
-                <v-toolbar color="yellow black--text" dark>
-                  <v-toolbar-side-icon class="black--text"></v-toolbar-side-icon>
-
-                  <v-toolbar-title>Статистика каппера</v-toolbar-title>
-                </v-toolbar>
-
-                <v-list>
-                  <v-subheader>Основная</v-subheader>
-
-                  <v-list-tile avatar v-for="(item, index) in itemsC" :key="index">
-                    <v-list-tile-content>
-                      <v-list-tile-title>{{ item.title }} -- {{ item.value }}</v-list-tile-title>
-                    </v-list-tile-content>
-                  </v-list-tile>
-                </v-list>
-              </v-card>
-            </v-dialog>
+            <v-btn to="/Cabinet">{{ props.item.name }}</v-btn>
           </td>
           <td class="text-xs-right">{{ props.item.reg }}</td>
           <td class="text-xs-right">{{ props.item.roi }}</td>
@@ -47,42 +28,6 @@ export default {
   components: { BreadCrumbs },
   data () {
     return {
-      dialog: false,
-      itemsC: [
-        {
-          icon: true,
-          title: 'Прибыль',
-          value: 10
-        },
-        {
-          title: 'Доход',
-          value: 10
-        },
-        {
-          title: 'Проход',
-          value: 10
-        },
-        {
-          title: 'Ср. коэф',
-          value: 10
-        },
-        {
-          title: 'ROI',
-          value: 10
-        },
-        {
-          title: 'Выйгрышей',
-          value: 10
-        },
-        {
-          title: 'Возвратов',
-          value: 10
-        },
-        {
-          title: 'Проигрышей',
-          value: 10
-        }
-      ],
       items: [
         {
           text: 'Главная',

@@ -56,9 +56,9 @@ export default {
       itemsC: [
         {
           icon: 'account_balance',
-          title: 'Прибыль',
+          title: 'Количество ставок',
           value: 10,
-          zn: '%'
+          zn: ''
         },
         {
           icon: 'account_balance_wallet',

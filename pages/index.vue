@@ -1,7 +1,5 @@
 <template>
   <section>
-    <carousel-hader/>
-
     <v-container>
       <v-layout column justify-center align-center>
         <bread-crumbs :items="items"></bread-crumbs>
@@ -36,11 +34,10 @@
   </section>
 </template>
 <script>
-import CarouselHader from '~/components/Page/Header/CarouselHader'
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 import BenefItem from '~/components/Page/Index/BenefItem'
 export default {
-  components: { CarouselHader, BreadCrumbs, BenefItem },
+  components: { BreadCrumbs, BenefItem },
   data () {
     return {
       expand: false,

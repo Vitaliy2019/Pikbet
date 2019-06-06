@@ -1,6 +1,4 @@
 <template>
-  
-   
     <v-flex sm6 xs12 md3 lg3>
       <v-card dark style="margin-bottom: 24px; margin-top: 48px;">
         <v-card class="v-offset" style="top: -24px; margin-bottom: -24px; width:90px;">

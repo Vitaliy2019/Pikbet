@@ -6,16 +6,30 @@
       title="Прогнозы на спорт. Стань успешным каппером. Регистрируйся на сайте и зарабатывай на своих прогнозах. Следи за успешными капперами. Повторяй ставки и выигрывай вместе с ними."
     >
       <img
-        src="/logo.jpg"
+        src="/logo.png"
         style="height:50px"
         alt="Прогнозы на спорт. Стань успешным каппером. Регистрируйся на сайте и зарабатывай на своих прогнозах. Следи за успешными капперами. Повторяй ставки и выигрывай вместе с ними."
       >
     </a>
     <v-spacer></v-spacer>
-    <v-btn to="/prognoz">прогнозы</v-btn>
+    <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
+      <template v-slot:activator="{ on }">
+        <v-btn v-on="on" to="/prognoz">прогнозы</v-btn>
+      </template>
+      <v-list>
+        <v-list-tile @click>
+          <v-list-tile-title>добавить прогноз</v-list-tile-title>
+        </v-list-tile>
+        <v-list-tile @click>
+          <v-list-tile-title>поиск капперов</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+
     <v-btn to="/capers">капперы</v-btn>
+
     <v-btn to="/raitingBk">рейтинг бк</v-btn>
-    <v-btn>новости</v-btn>
+    <v-btn>победители</v-btn>
     <v-btn to="/contact">контакты</v-btn>
     <v-spacer></v-spacer>
     <v-dialog v-model="dialog" width="500">

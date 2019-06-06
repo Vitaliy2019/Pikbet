@@ -1,7 +1,7 @@
 <template>
   <v-toolbar>
     <a href="/" class="pt-2">
-      <img src="/logo.jpg" style="height:50px">
+      <img src="/logo.png" style="height:50px">
     </a>
     <v-spacer></v-spacer>
     <v-menu offset-y>
