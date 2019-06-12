@@ -3,9 +3,9 @@
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-sheet height="300">
         <v-img :src="slide.img" height="300">
-          <v-container align-center fill-height justify-center pb-5>
+          <v-container align-center fill-height justify-center>
             <v-layout column align-start justify-center>
-              <v-flex xs12 sm5 md5 -3>
+              <v-flex xs12 sm5 md5 -3 pb-3>
                 <h1
                   class="headline font-weight-regular white--text text--accent-4"
                 >{{ slide.title }}</h1>
