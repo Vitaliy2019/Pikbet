@@ -2,10 +2,12 @@
   <v-app dark>
     <tool-bar-header-md class="hidden-sm-and-down"/>
     <tool-bar-header-sm class="hidden-md-and-up"></tool-bar-header-sm>
-    <v-content>
-      <carousel-hader/>
+    <v-content style="padding:0px;">
+      <carousel-hader class="hidden-sm-and-down" style="padding-top:48px"/>
+      <carousel-hader class="hidden-md-and-up"/>
       <nuxt/>
     </v-content>
+
     <foo-ter/>
   </v-app>
 </template>
