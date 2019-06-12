@@ -1,13 +1,26 @@
 <template>
-  <v-carousel cycle height="200" hide-delimiter-background show-arrows-on-hover>
+  <v-carousel cycle hide-delimiter-background show-arrows-on-hover>
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-sheet height="100%">
-        <v-img src="/feebet1.jpg" height="200">
+        <v-img :src="slide.img" height="100%">
           <v-container align-center fill-height justify-center>
             <v-layout column align-start justify-center>
-              <v-flex xs12 sm5 md5 pl-5 pt-1>
-                <h1 class="display-1 font-weight-bold yellow--text text--accent-4">{{ slide }}</h1>
-                <v-btn color="yellow accent-4" class="black--text">Получить фрибет</v-btn>
+              <v-flex xs12 sm5 md5 pl-1>
+                <h1
+                  class="hidden-md-and-down display-4 font-weight-regular white--text text--accent-4"
+                >{{ slide.title }}</h1>
+                <h2
+                  class="hidden-md-and-down display-3 font-weight-light yellow--text text--accent-4 pt-4"
+                >{{ slide.context }}</h2>
+
+                <h1
+                  class="hidden-lg-and-up display-2 font-weight-regular white--text text--accent-4"
+                >{{ slide.title }}</h1>
+                <h2
+                  class="hidden-lg-and-up display-1 font-weight-light yellow--text text--accent-4 pt-4"
+                >{{ slide.context }}</h2>
+
+                <v-btn outline color="white" class="black--text">Получить фрибет</v-btn>
               </v-flex>
             </v-layout>
           </v-container>
@@ -25,8 +38,22 @@ export default {
       ] /* ,        'black',        'black',        'red lighten-1',        'deep-purple accent-4' */,
 
       slides: [
-        'Приветственный фрибет'
-      ] /*, 'Second', 'Third', 'Fourth', 'Fifth' */
+        {
+          title: 'Стань успешным каппером с svg',
+          context: 'Регистрируйся на сайте и зарабатывай на своих прогнзах',
+          img: '/banner.svg'
+        },
+        {
+          title: 'Стань успешным каппером',
+          context: 'Регистрируйся на сайте и зарабатывай на своих прогнзах',
+          img: '/banner1.jpg'
+        },
+        {
+          title: 'Следи за успешными капперами',
+          context: 'Повторяй ставки и выигрывай вместе с ними',
+          img: '/banner2.jpg'
+        }
+      ]
     }
   }
 }
