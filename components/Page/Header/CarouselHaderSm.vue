@@ -22,25 +22,25 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       colors: [
-        'blue-grey darken-4'
+        "blue-grey darken-4"
       ] /* ,        'black',        'black',        'red lighten-1',        'deep-purple accent-4' */,
 
       slides: [
         {
-          title: 'Стань успешным каппером',
-          context: 'Регистрируйся на сайте и зарабатывай на своих прогнзах',
-          img: '/banner1.jpg'
+          title: "Стань успешным каппером",
+          context: "Регистрируйся на сайте и зарабатывай на своих прогнозах",
+          img: "/banner1.jpg"
         },
         {
-          title: 'Следи за успешными капперами',
-          context: 'Повторяй ставки и выигрывай вместе с ними',
-          img: '/banner2.jpg'
+          title: "Следи за успешными капперами",
+          context: "Повторяй ставки и выигрывай вместе с ними",
+          img: "/banner2.jpg"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
