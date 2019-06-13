@@ -13,7 +13,7 @@
                   class="title font-weight-light yellow--text text--accent-4 pt-2"
                 >{{ slide.context }}</h2>
                 <br>
-                <v-btn outline color="white" class="black--text">Получить фрибет</v-btn>
+                <v-btn outline color="white" class="black--text">Подробнее</v-btn>
               </v-flex>
             </v-layout>
           </v-container>
@@ -24,25 +24,25 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       colors: [
-        'blue-grey darken-4'
+        "blue-grey darken-4"
       ] /* ,        'black',        'black',        'red lighten-1',        'deep-purple accent-4' */,
 
       slides: [
         {
-          title: 'Стань успешным каппером',
-          context: 'Регистрируйся на сайте и зарабатывай на своих прогнзах',
-          img: '/banner1.jpg'
+          title: "Стань успешным каппером",
+          context: "Регистрируйся на сайте и зарабатывай на своих прогнзах",
+          img: "/banner1.jpg"
         },
         {
-          title: 'Следи за успешными капперами',
-          context: 'Повторяй ставки и выигрывай вместе с ними',
-          img: '/banner2.jpg'
+          title: "Следи за успешными капперами",
+          context: "Повторяй ставки и выигрывай вместе с ними",
+          img: "/banner2.jpg"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>

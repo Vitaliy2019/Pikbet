@@ -11,7 +11,7 @@
                   class="body-2 font-weight-light yellow--text text--accent-4 pt-2"
                 >{{ slide.context }}</h2>
                 <br>
-                <v-btn small outline color="white" class="black--text">Получить фрибет</v-btn>
+                <v-btn small outline color="white" class="black--text">Подробнее</v-btn>
               </v-flex>
             </v-layout>
           </v-container>
