@@ -30,6 +30,7 @@ import WidgetStatic from '~/components/Page/Cabinet/StaticCaper/WidgetStatic'
 import MenuCabinet from '~/components/Page/Cabinet/menu'
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 export default {
+
   name: 'cabinet-main',
   components: { BreadCrumbs, WidgetStatic, MenuCabinet },
   data () {

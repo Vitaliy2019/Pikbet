@@ -16,7 +16,11 @@
     "nuxt": "^2.7.1",
     "vue-i18n": "^8.11.2",
     "vuelidate": "^0.7.4",
-    "vuetify": "^1.5.14"
+    "vuetify": "^1.5.14",
+    "@finpo/vue2-recaptcha-invisible": "^1.1.5",
+    "@mdi/font": "^2.4.85",
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.3.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

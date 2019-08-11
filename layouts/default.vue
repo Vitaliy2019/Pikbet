@@ -7,7 +7,6 @@
       <carousel-hader-sm class="hidden-md-and-up"/>
       <nuxt/>
     </v-content>
-
     <foo-ter/>
   </v-app>
 </template>
