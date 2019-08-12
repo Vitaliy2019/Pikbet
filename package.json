@@ -10,7 +10,6 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "now-build": "nuxt build --spa"
-
   },
   "dependencies": {
     "nuxt": "^2.7.1",
