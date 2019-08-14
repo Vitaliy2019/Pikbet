@@ -78,7 +78,7 @@
               color="yellow"
               class="black--text"
               depressed
-              @click="step++"
+              @click="steps"
             >Следующий</v-btn>
           </v-card-actions>
         </v-card>
@@ -160,6 +160,35 @@ export default {
           return 'Create a password'
         default:
           return 'Создать пароль'
+      }
+    }
+  },
+  methods: {
+    async steps () {
+      this.step++
+      if (this.step === 3) {
+        const data = {
+          Email: this.email,
+          Password: this.password
+        }
+        const { rc } = await this.$axios.$post(
+          '/api/Client/registration',
+          data
+        )
+        if (rc === 'ok') {
+          this.$notify({
+            type: 'success',
+            title: 'Внимание!',
+            message:
+              'Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме'
+          })
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'Внимание!',
+            message: rc
+          })
+        }
       }
     }
   }

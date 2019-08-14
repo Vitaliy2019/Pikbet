@@ -1,4 +1,57 @@
 module.exports = {
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+    //'@nuxtjs/redirect-module'
+    //'@nuxtjs/sitemap'
+  ],
+  /* sitemap: {
+     path: '/sitemap.xml',
+     hostname: 'https://www.acrtr.ru',
+     cacheTime: 1000 * 60 * 15,
+     gzip: true,
+     generate: false, // Enable me when using nuxt generate
+     exclude: [
+       '/Cabinet/**'
+       // '/admin/**'
+     ],
+     routes() {
+       return getAppRoutes()
+     }
+   },*/
+  axios: {
+    // baseURL: // process.env.NODE_ENV !== 'production' ? 'http://localhost:59501' : ''
+    baseURL: 'https://localhost:5001'
+    // baseURL: 'https://api.acrtr.ru'
+    // baseURL: apiUrl
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/Account',
+            method: 'post',
+            propertyName: 'token'
+          },
+          user: {
+            url: '/api/Client/getuser',
+            method: 'get',
+            propertyName: 'user'
+          },
+          logout: false
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer'
+      }
+    },
+    redirect: {
+      login: '/Cabinet/default',
+      logout: '/',
+      callback: '/Login',
+      home: '/'
+    }
+  },
   /*
    ** Headers of the page
    */
