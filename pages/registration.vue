@@ -171,6 +171,7 @@ export default {
           Email: this.email,
           Password: this.password
         }
+        // debugger
         const { rc } = await this.$axios.$post(
           '/api/Client/registration',
           data

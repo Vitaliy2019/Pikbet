@@ -19,7 +19,9 @@
     "@finpo/vue2-recaptcha-invisible": "^1.1.5",
     "@mdi/font": "^2.4.85",
     "@nuxtjs/auth": "^4.5.3",
-    "@nuxtjs/axios": "^5.3.6"
+    "@nuxtjs/axios": "^5.3.6",
+    "axios": "0.19.0",
+    "element-ui": "2.11.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

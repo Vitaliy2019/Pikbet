@@ -30,7 +30,7 @@ module.exports = {
       local: {
         endpoints: {
           login: {
-            url: '/api/Account',
+            url: '/api/Client',
             method: 'post',
             propertyName: 'token'
           },

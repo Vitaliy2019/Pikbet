@@ -52,7 +52,8 @@ export default {
   components: { LoginIn },
   data () {
     return {
-      title: 'pikbet.ru'
+      title: 'pikbet.ru',
+      menu: null
     }
   },
   computed: {
