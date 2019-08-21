@@ -84,7 +84,7 @@ module.exports = {
       }
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
+  plugins: ['~/plugins/vuetify.js', '~/plugins/element-ui.js'],
   css: ['~/assets/style/app.styl'],
   /*
    ** Customize the progress bar color
