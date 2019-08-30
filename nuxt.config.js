@@ -22,8 +22,8 @@ module.exports = {
    },*/
   axios: {
     // baseURL: // process.env.NODE_ENV !== 'production' ? 'http://localhost:59501' : ''
-    baseURL: 'https://localhost:5001'
-    // baseURL: 'https://api.acrtr.ru'
+    //baseURL: 'https://localhost:5001'
+    baseURL: 'https://api.pikbet.ru'
     // baseURL: apiUrl
   },
   auth: {
