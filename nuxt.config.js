@@ -1,4 +1,5 @@
 module.exports = {
+
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth'
@@ -82,10 +83,18 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
       }
-    ]
+    ],
+    script: [{
+      src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+      async: true,
+      defer: true
+    }, {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.4/echarts-en.min.js'
+    }]
   },
   plugins: ['~/plugins/vuetify.js', '~/plugins/element-ui.js'],
   css: ['~/assets/style/app.styl'],
+
   /*
    ** Customize the progress bar color
    */

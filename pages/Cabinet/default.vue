@@ -17,8 +17,8 @@
         :icon="item.icon"
         :zn="item.zn"
       />
-      <v-divider/>
-      <menu-cabinet/>
+      <v-divider />
+      <menu-cabinet />
     </v-layout>
     <v-layout justify-center align-center wrap>
       <h1 class="display-4 my-5">Аккаунт</h1>
@@ -30,7 +30,7 @@ import WidgetStatic from '~/components/Page/Cabinet/StaticCaper/WidgetStatic'
 import MenuCabinet from '~/components/Page/Cabinet/menu'
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 export default {
-
+  middleware: ['auth'],
   name: 'cabinet-main',
   components: { BreadCrumbs, WidgetStatic, MenuCabinet },
   data () {

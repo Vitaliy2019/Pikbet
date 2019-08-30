@@ -35,11 +35,11 @@
             />
             <vue-recaptcha
               ref="invisibleRecaptcha"
-              size="invisible"
-              sitekey="6LeN9mQUAAAAAAmFKyPlt5XzSxheIv_gdmQYP8ha"
               @verify="onVerify"
               @expired="onExpired"
-            />
+              size="invisible"
+              sitekey="6LfZuqcUAAAAAKm_TlDV3SWrAhrUpejjlOJ_FAV5"
+            ></vue-recaptcha>
           </v-form>
         </v-card-text>
         <v-card-actions>

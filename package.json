@@ -21,7 +21,8 @@
     "@nuxtjs/auth": "^4.5.3",
     "@nuxtjs/axios": "^5.3.6",
     "axios": "0.19.0",
-    "element-ui": "2.11.1"
+    "element-ui": "2.11.1",
+    "vue-recaptcha": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
