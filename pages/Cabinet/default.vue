@@ -45,7 +45,7 @@ export default {
         {
           text: 'личный кабинет каппера',
           disabled: false,
-          href: '/Cabinet'
+          href: '/Cabinet/default'
         },
         {
           text: 'статистика',

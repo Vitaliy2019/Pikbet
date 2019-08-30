@@ -1,7 +1,7 @@
 <template>
   <v-toolbar>
     <a href="/" class="pt-2">
-      <img src="/logo.png" style="height:30px">
+      <img src="/logo.png" style="height:30px" />
     </a>
     <v-spacer></v-spacer>
     <v-menu offset-y>
@@ -19,6 +19,7 @@
   </v-toolbar>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'tool-bar-header-md',
   data () {
@@ -32,6 +33,9 @@ export default {
       ],
       title: 'pikbet.ru'
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
     toRouter (ind) {

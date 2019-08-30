@@ -53,6 +53,28 @@
                   @input="$v.repeatPassword.$touch()"
                   @blur="$v.repeatPassword.$touch()"
                 ></v-text-field>
+                <v-checkbox
+                  id="checkboxUslovie"
+                  v-model="checkbox"
+                  class="font-weight-thin"
+                  style="font-size:10px"
+                  :error-messages="checkboxErrors"
+                  label="Я согласен с пользовательским соглашением сайта PikBet"
+                  required
+                  @change="$v.checkbox.$touch()"
+                  @blur="$v.checkbox.$touch()"
+                />
+                <v-checkbox
+                  id="checkboxYear"
+                  v-model="checkbox1"
+                  class="font-weight-thin"
+                  style="font-size:10px"
+                  :error-messages="checkboxErrors1"
+                  label="Я подтверждаю ознакомление с правилами сайта и возрастным ограничением в 18 лет (для граждан РК 21 год)"
+                  required
+                  @change="$v.checkbox1.$touch()"
+                  @blur="$v.checkbox1.$touch()"
+                />
                 <span
                   class="caption grey--text text--darken-1"
                 >Пожалуйста введите пароль для вашего аккаунта</span>
@@ -61,9 +83,9 @@
 
             <v-window-item :value="3">
               <div class="pa-3 text-xs-center">
-                <v-img class="mb-3" contain height="128" src="/logo.jpg"></v-img>
+                <v-img class="mb-3" contain height="128" src="/logo.png"></v-img>
                 <h3 class="title font-weight-light mb-2">Добро пожаловать в PIKBET</h3>
-                <span class="caption grey--text">Спасибо за регистрацию!</span>
+                <p :class="[isActive ? 'activeClass' : 'errorClass']">{{message}}</p>
               </div>
             </v-window-item>
           </v-window>
@@ -97,11 +119,13 @@ export default {
     repeatPassword: { sameAsPassword: sameAs('password') },
     email: { required, email },
     // tel: { required },
-    checkbox: { sameAsTrue: sameAs(() => true) }
+    checkbox: { sameAsTrue: sameAs(() => true) },
+    checkbox1: { sameAsTrue: sameAs(() => true) }
   },
   name: 'my-registr',
   components: { BreadCrumbs },
   data: () => ({
+    isActive: false,
     valid: false,
     email: 'info@pikbet.ru',
     password: '',
@@ -118,7 +142,10 @@ export default {
         disabled: true,
         href: ''
       }
-    ]
+    ],
+    checkbox: false,
+    checkbox1: false,
+    message: ''
   }),
 
   computed: {
@@ -126,6 +153,13 @@ export default {
       const errors = []
       if (!this.$v.checkbox.$dirty) return errors
       !this.$v.checkbox.sameAsTrue &&
+        errors.push('Вы должны принять условия использования для продолжения!')
+      return errors
+    },
+    checkboxErrors1 () {
+      const errors = []
+      if (!this.$v.checkbox1.$dirty) return errors
+      !this.$v.checkbox1.sameAsTrue &&
         errors.push('Вы должны принять условия использования для продолжения!')
       return errors
     },
@@ -157,16 +191,23 @@ export default {
         case 1:
           return 'Ввод основных данных'
         case 2:
-          return 'Create a password'
-        default:
           return 'Создать пароль'
+        case 3:
+          return 'Завершение'
       }
     }
   },
+  created () {
+    this.$v.$touch()
+  },
   methods: {
     async steps () {
-      this.step++
-      if (this.step === 3) {
+      this.$v.$touch()
+      debugger; // eslint-disable-line
+      if (this.step === 1 && this.$v.email.required) {
+        this.step++
+      } else if (this.step === 2 && !this.$v.$invalid) {
+        this.step++
         const data = {
           Email: this.email,
           Password: this.password
@@ -177,21 +218,22 @@ export default {
           data
         )
         if (rc === 'ok') {
-          this.$notify({
-            type: 'success',
-            title: 'Внимание!',
-            message:
-              'Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме'
-          })
+          this.isActive = true
+          this.message =
+            'Вам на почту отправлено письмо с ссылкой для активации аккаунта. После активации Вы сможете пользоваться сайтом.'
         } else {
-          this.$notify({
-            type: 'error',
-            title: 'Внимание!',
-            message: rc
-          })
+          this.message = rc
         }
       }
     }
   }
 }
 </script>
+<style>
+.activeClass {
+  color: green;
+}
+.errorClass {
+  color: red;
+}
+</style>

@@ -117,7 +117,7 @@ export default {
       this.$router.push('/registration')
     },
     onSubmit: function () {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.$refs.invisibleRecaptcha.execute()
@@ -127,7 +127,7 @@ export default {
     },
     onVerify: async function (response) {
       try {
-        debugger; // eslint-disable-line
+        // debugger; // eslint-disable-line
         this.loading = true
         await this.$auth.loginWith('local', {
           data: {
@@ -135,9 +135,10 @@ export default {
             password: this.password
           }
         })
-        this.$router.push('/Cabinet/Default')
+        this.loading = false
+        this.$store.commit('viewLogin')
+        this.$router.push('/Cabinet/default')
       } catch (e) {
-        // this.error = e.response.data
         this.$notify({
           type: 'error',
           title: 'Внимание',
