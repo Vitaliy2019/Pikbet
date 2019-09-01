@@ -2,7 +2,8 @@
     "version": 2,
     "alias": "pikbet.ru",
     "builds": [{
-        "src": "package.json",
-        "use": "@now/static-build"
+        "src": "nuxt.config.js",
+        "use": "@nuxtjs/now-builder",
+        "config": {}
     }]
 }
