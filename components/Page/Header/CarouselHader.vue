@@ -13,7 +13,10 @@
                   class="title font-weight-thin white--text text--accent-4 pb-3"
                 >{{ slide.context }}</h2>
                 <br />
-                <v-btn outline color="white" style="border-color: yellow; border-radius: 8px;"  class="black--text ">Подробнее</v-btn>
+                <v-btn outline color="white" style="border-color: yellow;
+                  -webkit-border-radius: 8px; -moz-border-radius: 8px;
+                  border-radius: 8px;"  class="black--text ">
+                  Подробнее</v-btn>
               </v-flex>
             </v-layout>
           </v-container>

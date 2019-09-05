@@ -22,7 +22,7 @@ module.exports = {
    }, */
   axios: {
 
-    //baseURL: 'https://localhost:5001'
+    // baseURL: 'https://localhost:5001'
     baseURL: 'https://api.pikbet.ru'
 
   },
