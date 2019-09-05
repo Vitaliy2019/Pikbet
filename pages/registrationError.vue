@@ -6,27 +6,19 @@
       <v-card>
         <v-toolbar>
           <v-icon color="green">check_circle</v-icon>
-          <v-toolbar-title>Успешная регистрация</v-toolbar-title>
+          <v-toolbar-title>Ошибка регистрации</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <h1 style="text-align:center">Вы успешно зарегистрировались!</h1>
-          <p class="pt-3">Теперь Вам доступны все сервисы нашего сайта.</p>
-          <p>
-            В сутки разрешено публиковать не более 20 прогнозов, максимальная
-            ставка не более 500 виртуальных евро, минимальная ставка 50 виртуальных евро.
-          </p>
-          <p>
-            На ваш счет зачаисленно
-            <strong class="green--text">10 000</strong> виртуальных евро.
-          </p>
+          <h1 style="text-align:center">Возникла ошибка:</h1>
+          <p class="pt-3">{{message}}</p>
         </v-card-text>
         <v-card-actions>
           <v-btn to="/">
             <v-icon color="red" left>touch_app</v-icon>На главную
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn to="/Cabinet/default">
-            <v-icon color="light-green" left>touch_app</v-icon>Личный кабинет
+          <v-btn to="/registration">
+            <v-icon color="light-green" left>touch_app</v-icon>Регистрация
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -36,11 +28,11 @@
 <script>
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 export default {
-  // middleware: ['auth'],
   name: 'registration-success',
   components: { BreadCrumbs },
   data () {
     return {
+      message: '',
       items: [
         {
           text: 'Главная',
@@ -54,6 +46,10 @@ export default {
         }
       ]
     }
+  },
+  asyncData ({ query }) {
+    console.log(query)
+    return { message: query.mess }
   }
 }
 </script>

@@ -1,66 +1,68 @@
 <template>
-  <v-layout align-center justify-center>
-    <v-flex xs12>
-      <v-card class="elevation-12">
-        <v-toolbar dark color="yellow">
-          <v-toolbar-title>Введите данные для входа в личный кабинет</v-toolbar-title>
-          <v-spacer />
-        </v-toolbar>
-        <v-card-text>
-          <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
-            <v-text-field
-              color="yellow"
-              v-model="email"
-              prepend-icon="person"
-              name="login"
-              label="E-mail"
-              type="text"
-              :error-messages="emailErrors"
-              required
-              @input="$v.email.$touch()"
-              @blur="$v.email.$touch()"
-            />
-            <v-text-field
-              color="yellow"
-              id="password"
-              v-model="password"
-              prepend-icon="lock"
-              name="password"
-              label="Пароль"
-              type="password"
-              :error-messages="passwordErrors"
-              required
-              @input="$v.password.$touch()"
-              @blur="$v.password.$touch()"
-            />
-            <vue-recaptcha
-              ref="invisibleRecaptcha"
-              size="invisible"
-              sitekey="6LfZuqcUAAAAAKm_TlDV3SWrAhrUpejjlOJ_FAV5"
-              @verify="onVerify"
-              @expired="onExpired"
-            />
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-tooltip bottom>
-            <v-btn slot="activator" :loading="loading" color="success" @click="onSubmit">Войти</v-btn>
-            <span>Вход в личный кабинет</span>
-          </v-tooltip>
-          <v-tooltip bottom>
-            <v-btn
-              slot="activator"
-              class="ml-2"
-              color="yellow"
-              to="/registration"
-              @click="Registration"
-            >Регистрация</v-btn>
-            <span>Регистрация для входа в личный кабинет</span>
-          </v-tooltip>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-container>
+    <v-layout align-center justify-center>
+      <v-flex xs6>
+        <v-card class="elevation-12">
+          <v-toolbar dark color="yellow">
+            <v-toolbar-title>Введите данные для входа в личный кабинет</v-toolbar-title>
+            <v-spacer />
+          </v-toolbar>
+          <v-card-text>
+            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
+              <v-text-field
+                color="yellow"
+                v-model="email"
+                prepend-icon="person"
+                name="login"
+                label="E-mail"
+                type="text"
+                :error-messages="emailErrors"
+                required
+                @input="$v.email.$touch()"
+                @blur="$v.email.$touch()"
+              />
+              <v-text-field
+                color="yellow"
+                id="password"
+                v-model="password"
+                prepend-icon="lock"
+                name="password"
+                label="Пароль"
+                type="password"
+                :error-messages="passwordErrors"
+                required
+                @input="$v.password.$touch()"
+                @blur="$v.password.$touch()"
+              />
+              <vue-recaptcha
+                ref="invisibleRecaptcha"
+                size="invisible"
+                sitekey="6LfZuqcUAAAAAKm_TlDV3SWrAhrUpejjlOJ_FAV5"
+                @verify="onVerify"
+                @expired="onExpired"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-tooltip bottom>
+              <v-btn slot="activator" :loading="loading" color="success" @click="onSubmit">Войти</v-btn>
+              <span>Вход в личный кабинет</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <v-btn
+                slot="activator"
+                class="ml-2"
+                color="yellow"
+                to="/registration"
+                @click="Registration"
+              >Регистрация</v-btn>
+              <span>Регистрация для входа в личный кабинет</span>
+            </v-tooltip>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
@@ -142,7 +144,7 @@ export default {
         this.$notify({
           type: 'error',
           title: 'Внимание',
-          message: e.response.data
+          message: e
         })
 
         this.resetRecaptcha()

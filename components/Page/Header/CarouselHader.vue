@@ -1,19 +1,19 @@
 <template>
-  <v-carousel height="300" cycle show-arrows-on-hover>
+  <v-carousel height="300" cycle show-arrows-on-hover hide-delimiters>
     <v-carousel-item v-for="(slide, i) in slides" :key="i+'ss'">
       <v-sheet height="300">
         <v-img :src="slide.img" height="300">
           <v-container align-center fill-height justify-center>
             <v-layout column align-start justify-center>
-              <v-flex xs12 sm5 md5 -3 pb-3 pl-4>
+              <v-flex xs12 sm5 md5  pb-3 pl-4>
                 <h1
-                  class="headline font-weight-regular white--text text--accent-4"
+                  class="display-2 font-weight-thin white--text text--accent-4 text-uppercase pb-3"
                 >{{ slide.title }}</h1>
                 <h2
-                  class="title font-weight-light yellow--text text--accent-4 pt-2"
+                  class="title font-weight-thin white--text text--accent-4 pb-3"
                 >{{ slide.context }}</h2>
                 <br />
-                <v-btn outline color="white" class="black--text">Подробнее</v-btn>
+                <v-btn outline color="white" style="border-color: yellow; border-radius: 8px;"  class="black--text ">Подробнее</v-btn>
               </v-flex>
             </v-layout>
           </v-container>

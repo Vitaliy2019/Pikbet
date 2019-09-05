@@ -3,8 +3,8 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth'
-    //'@nuxtjs/redirect-module'
-    //'@nuxtjs/sitemap'
+    // '@nuxtjs/redirect-module'
+    // '@nuxtjs/sitemap'
   ],
   /* sitemap: {
      path: '/sitemap.xml',
@@ -19,12 +19,12 @@ module.exports = {
      routes() {
        return getAppRoutes()
      }
-   },*/
+   }, */
   axios: {
-    // baseURL: // process.env.NODE_ENV !== 'production' ? 'http://localhost:59501' : ''
+
     //baseURL: 'https://localhost:5001'
     baseURL: 'https://api.pikbet.ru'
-    // baseURL: apiUrl
+
   },
   auth: {
     strategies: {
@@ -47,9 +47,9 @@ module.exports = {
       }
     },
     redirect: {
-      login: '/Cabinet/default',
+      login: '/login',
       logout: '/',
-      callback: '/Login',
+      callback: '/',
       home: '/'
     }
   },

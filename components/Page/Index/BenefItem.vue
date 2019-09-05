@@ -2,7 +2,7 @@
   <v-container mb-3 grid-list-xl>
     <v-layout row wrap align-center justify-center align-content-space-between>
       <v-flex d-flex xs12 sm6 md3>
-        <v-card class="elevation-24 hide-overflow" height="250px">
+        <v-card class="elevation-24 hide-overflow" :height="heightVCard">
           <v-card-text>
             <nuxt-link to="/pravila" class="benef__link mt-5">
               <div class="benef__icons">
@@ -47,11 +47,12 @@
               </div>
             </nuxt-link>
           </v-card-text>
-          <v-card-text class="text-xs-center grey--text text--lighten-1">Тонкости от А до Я</v-card-text>
+          <v-card-text class="text-xs-center grey--text text--lighten-1">
+          </v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm6 md3>
-        <v-card class="elevation-24 hide-overflow" height="250px">
+        <v-card class="elevation-24 hide-overflow" :height="heightVCard">
           <v-card-text>
             <nuxt-link to="/zarabatyvay" class="benef__link">
               <div class="benef__icons">
@@ -106,11 +107,11 @@
               </div>
             </nuxt-link>
           </v-card-text>
-          <v-card-text class="text-xs-center grey--text text--lighten-1">Отдаем до 70% от суммы</v-card-text>
+          <v-card-text class="text-xs-center grey--text text--lighten-1"></v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm6 md3>
-        <v-card class="elevation-24 hide-overflow" height="250px">
+        <v-card class="elevation-24 hide-overflow" :height="heightVCard">
           <v-card-text>
             <nuxt-link to="/stratege" class="benef__link">
               <div class="benef__icons">
@@ -165,36 +166,21 @@
               </div>
             </nuxt-link>
           </v-card-text>
-          <v-card-text class="text-xs-center grey--text text--lighten-1">Полный отчет по прогрнозам</v-card-text>
+          <v-card-text class="text-xs-center grey--text text--lighten-1">
+          </v-card-text>
         </v-card>
       </v-flex>
 
       <v-flex d-flex xs12 sm6 md3>
-        <v-card class="elevation-24 hide-overflow" height="250px">
+        <v-card class="elevation-24 hide-overflow" :height="heightVCard">
           <v-card-text>
             <nuxt-link to="/help" class="benef__link">
               <div class="benef__icons">
                 <div class="benef__svg-wrapper benef__svg-wrapper_mobile-change">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 201 231.2"
-                    class="benef__svg"
-                  >
-                    <path
-                      d="M13.1 149.2C5.9 149.2 0 143.7 0 137V85c0-6.7 5.9-12.2 13.1-12.2 7.2 0 13.1 5.5 13.1 12.2v52.1c0 6.7-5.9 12.1-13.1 12.1zm0-67.1c-2.1 0-3.9 1.3-3.9 2.9v52.1c0 1.6 1.8 2.9 3.9 2.9 2.1 0 3.9-1.3 3.9-2.9V85c0-1.6-1.8-2.9-3.9-2.9zM187.9 149.8c-7.2 0-13.1-5.5-13.1-12.2v-52c0-6.7 5.9-12.2 13.1-12.2 7.2 0 13.1 5.5 13.1 12.2v52.1c0 6.7-5.9 12.1-13.1 12.1zm0-67.1c-2.1 0-3.9 1.3-3.9 2.9v52.1c0 1.6 1.8 2.9 3.9 2.9 2.1 0 3.9-1.3 3.9-2.9V85.6c-.1-1.6-1.8-2.9-3.9-2.9zM155.8 48c-2.4-7.7-8.8-19.2-20.1-27.9L145 7.8c1.6-2 1.2-4.9-.9-6.5-2-1.5-4.9-1.1-6.5.9L127.8 15c-8-4.3-17.8-7.2-29.6-7.2-11.4 0-20.5 2.6-27.8 6.6L61 1.8c-1.5-2-4.5-2.4-6.5-.9s-2.4 4.5-.9 6.5l9.3 12.3C52.1 28.8 47.2 41.2 46 49.4c-.4 2.7.4 5.3 2.2 7.4 1.8 2 4.3 3.2 7 3.2H147c2.9 0 5.7-1.4 7.4-3.8 1.8-2.4 2.3-5.4 1.4-8.2zM55.2 50.7S60 17.1 98.4 17.1c38.4 0 48.6 33.6 48.6 33.6H55.2zM151 81.9H50.7c-7.7 0-13.9 5.9-13.9 13.2v65.5c0 10.6 3.6 23 19.1 26.2V219c0 6.7 5.9 12.2 13.1 12.2 7.2 0 13.1-5.5 13.1-12.2v-31.2h36.6V219c0 6.7 5.9 12.2 13.1 12.2 7.2 0 13.1-5.5 13.1-12.2v-31.8c13.8-2.1 19.9-10.3 19.9-26.5V95.2c.1-7.3-6.1-13.3-13.8-13.3zM72.9 219c0 1.6-1.8 2.9-3.9 2.9-2.1 0-3.9-1.3-3.9-2.9v-31.2h7.7V219zm59 3c-2.1 0-3.9-1.3-3.9-2.9v-31.2h7.7V219c.1 1.6-1.7 3-3.8 3zm23.8-61.3c0 14.1-4.6 17.9-18.5 17.9H64.6c-12.2 0-18.5-4.6-18.5-17.9V95.2c0-2.2 2.1-4 4.6-4H151c2.6 0 4.6 1.8 4.6 4v65.5z"
-                    ></path>
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M8 23h8v-2H8v2zM18 1.01L6 1v18h12V1.01zM16 15H8V5h8v10z"/></svg>                 
                 </div>
                 <div class="benef__svg-wrapper benef__svg-wrapper_mobile">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 146.5 182.4"
-                    class="benef__svg"
-                  >
-                    <path
-                      d="M139 123c-5.5-5.6-11.8-12-11.8-25.1 0-20.7 13.5-26 14-26.2 1.2-.4 2.1-1.4 2.5-2.7.4-1.2.1-2.6-.7-3.6-.5-.6-11.4-14.1-30.3-14.8-10.2-.4-16.6 1.6-22.3 3.4-4.5 1.4-8.4 2.6-13.8 2.6-5.3 0-8-1.1-11.4-2.6-4.5-1.9-9.6-4.1-20.5-4.1C23.1 49.9 0 70.5 0 101.2c0 30.6 27.2 80.6 48.6 80.6 10.5 0 14.6-1.2 18.2-2.3 2.9-.9 5.4-1.6 11.7-1.6 7.2 0 10.6 1.1 14.3 2.4 3.5 1.1 7 2.3 13 2.3 13.8 0 40.6-35.6 40.6-46.6.1-5.4-3.6-9.1-7.4-13zm-33.1 51.4c-4.7 0-7.3-.9-10.5-1.9-3.9-1.3-8.4-2.8-16.8-2.8-7.5 0-10.8 1-14 2-3.3 1-6.6 2-15.9 2-14.4.1-40.7-42.6-40.7-72.5C8 73 29.3 57.9 44.6 57.9c9.3 0 13.4 1.7 17.4 3.4 3.8 1.6 7.6 3.2 14.5 3.2 6.6 0 11.5-1.5 16.2-3 5.6-1.7 10.8-3.4 19.6-3 9.7.4 17 5.1 20.9 8.4-5.7 4.1-14.1 13-14.1 30.8 0 16.4 8.1 24.7 14.1 30.7 2.8 2.8 5.2 5.3 5.2 7.2.1 10.1-25.7 38.8-32.5 38.8zM72.5 44.6c.9.1 1.8.1 2.7.1 27.1 0 34.2-26.6 34.2-40.7 0-1.1-.5-2.2-1.3-3-.8-.8-1.9-1.1-3.1-1-38 3.7-36.2 40.5-36.2 40.8.1 2.1 1.7 3.7 3.7 3.8zm28.6-35.9c-1 8.8-5.5 27-24.2 28 .5-7.5 4.2-23.9 24.2-28z"
-                    ></path>
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>                  
                 </div>
               </div>
               <div class="benef__h-wrap text-xs-center">
@@ -203,8 +189,7 @@
             </nuxt-link>
           </v-card-text>
           <v-card-text class="text-xs-center grey--text text--lighten-1">
-            Чат с администратором.
-            Ответим на вопросы
+            
           </v-card-text>
         </v-card>
       </v-flex>
@@ -212,7 +197,15 @@
   </v-container>
 </template>
 <script>
-export default {}
+export default {
+  name: 'benefItem',
+
+  data () {
+    return {
+      heightVCard: '150px'
+    }
+  }
+}
 </script>
 <style scoped>
 .benef__icons {
