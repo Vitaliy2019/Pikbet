@@ -23,10 +23,13 @@
             </a>
 
             <a href="#" title="Google+" target="_blank" rel="noopener" class="social mx-3">
-              <v-icon aria-hidden>fa fa-google-plus</v-icon>
+              <v-icon aria-hidden>fa fa-twitter</v-icon>
             </a>
             <a href="#" title="Twitter" target="_blank" rel="noopener" class="social mx-3">
-              <v-icon aria-hidden>fa fa-facebook-f</v-icon>
+              <v-icon aria-hidden>fa fa-instagram</v-icon>
+            </a>
+            <a href="#" title="Twitter" target="_blank" rel="noopener" class="social mx-3">
+              <v-icon aria-hidden>fa fa-youtube</v-icon>
             </a>
           </v-layout>
         </v-flex>

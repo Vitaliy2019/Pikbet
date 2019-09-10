@@ -12,7 +12,7 @@
       />
     </a>
     <v-spacer></v-spacer>
-   <!-- <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
+    <!-- <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" @click>прогнозы</v-btn>
       </template>
@@ -26,6 +26,7 @@
       </v-list>
     </v-menu>-->
     <v-btn to="/capers">добавить прогноз</v-btn>
+    <v-btn to="/capers">прогнозы</v-btn>
     <v-btn to="/capers">капперы</v-btn>
 
     <v-btn to="/raitingBk">рейтинг бк</v-btn>
@@ -91,6 +92,14 @@ export default {
       title: 'pikbet.ru',
       menu: null,
       items: [
+        {
+          icon: 'menu_book',
+          href: '#',
+          title: 'Кабинет',
+          click: e => {
+            this.$router.push('/Cabinet/default')
+          }
+        },
         {
           icon: 'account_balance',
           href: '#',

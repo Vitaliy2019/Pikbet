@@ -22,8 +22,8 @@ module.exports = {
    }, */
   axios: {
 
-    // baseURL: 'https://localhost:5001'
-    baseURL: 'https://api.pikbet.ru'
+   // baseURL: 'https://localhost:5001'
+   baseURL: 'https://api.pikbet.ru'
 
   },
   auth: {

@@ -9,19 +9,50 @@
       </v-flex>
     </v-layout>
     <v-layout justify-center align-center wrap>
-      <widget-static
+      <v-flex xs12 class="datacaper">
+        <v-toolbar color="#303030" flat>
+          <img src="/graphic-light.png" />
+          <v-spacer></v-spacer>
+          <img src="/calculator.svg"/>
+          <v-toolbar-title >
+            
+            <span class="yellow--text text--darken-2">Статистика капера</span>
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
+
+        <v-toolbar color="#303030" flat>
+          <v-toolbar-title>
+            <span class="yellow--text text--darken-2">За все время</span>
+          </v-toolbar-title>
+          <img class="pl-1" src="/calendar-icon.png"/>
+          <v-spacer/>
+          <v-toolbar-title>
+            <span class="yellow--text text--darken-2">Баланс: 
+              <span class="title green--text">10 000</span></span>
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-title>
+            <span class="yellow--text text--darken-2">В игре: 
+              <span class="title green--text">10 000</span></span>
+          </v-toolbar-title>
+          
+        </v-toolbar>
+      </v-flex>
+
+      <!--<widget-static
         v-for="(item, index) in itemsC"
         :key="index"
         :sum="item.value"
         :title="item.title"
         :icon="item.icon"
         :zn="item.zn"
-      />
+      />-->
       <v-divider />
       <menu-cabinet />
     </v-layout>
     <v-layout justify-center align-center wrap>
-      <h1 class="display-4 my-5">Аккаунт</h1>
+      <h1 class="display-4 my-5">Статистика каппера</h1>
     </v-layout>
   </v-container>
 </template>
@@ -102,4 +133,19 @@ export default {
   }
 }
 </script>
+<style scoped>
+.container.grid-list-xl .layout .flex {
+  padding: 3px;
+}
+.datacaper {
+  padding: 0;
+  border: 2px solid;
+  border-color: goldenrod;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
 
+  /*display: flex;
+  flex-direction: row;
+   background-color: azure;*/
+}
+</style>

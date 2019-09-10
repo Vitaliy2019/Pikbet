@@ -5,7 +5,7 @@
         <bread-crumbs :items="items"></bread-crumbs>
         <benef-item></benef-item>
         <v-toolbar>
-          <v-toolbar-title>СПИСОК ТОПОВЫX ПРОГНОЗОВ</v-toolbar-title>
+          <v-toolbar-title>СПИСОК ТОПОВЫX СОБЫТИЙ</v-toolbar-title>
         </v-toolbar>
         <v-data-table
           :headers="headers"
@@ -51,9 +51,7 @@ export default {
         { text: 'Спорт', value: 'sport' },
         { text: 'Чемпионат', value: 'chempionat' },
         { text: 'Команда1-Команда2', value: 'comands12' },
-        { text: 'Исход', value: 'ishod' },
-        { text: 'Коэфф', value: 'koefcnt' },
-        { text: 'Сделано ставок', value: 'CountStavok' }
+        { text: 'Количество прогрозов', value: 'ishod' }
       ],
       desserts: [],
 

@@ -9,7 +9,7 @@
     <v-btn round color="yellow darken-4" dark>личные данные</v-btn>
     <v-btn round color="yellow darken-4" dark>
       Баланс:
-      <v-icon>euro_symbol</v-icon>7 500
+      <v-icon>euro_symbol</v-icon>10 000
     </v-btn>
   </div>
 </template>
