@@ -2,7 +2,7 @@
   <div>
     <v-toolbar color="#303030" flat>
       <v-toolbar-title>
-        <span>За все время</span>
+        <span>{{titlePeriod}}</span>
       </v-toolbar-title>
       <v-icon class="pl-2" @click="dialogDate=true">fa fa-calendar</v-icon>
       <v-spacer />
@@ -32,13 +32,12 @@
                 range-separator="до"
                 start-placeholder="Начальная дата"
                 end-placeholder="Конечная дата"
-                value-format="yyyy-MM-dd"
+                value-format="dd.MM.yyyy"
               ></el-date-picker>
-              {{rulesForm.Fvalue1}}
             </el-form-item>
             <el-form-item>
-              <v-btn outline @click="dialogDate=false" color="white">Загрузить данные</v-btn>
-              <v-btn outline @click="dialogDate=false" color="yellow">За все время</v-btn>
+              <v-btn outline @click="loadData('ruleForm')" color="white">Загрузить данные</v-btn>
+              <v-btn outline @click="close" color="yellow">За все время</v-btn>
             </el-form-item>
           </el-form>
         </v-card-text>
@@ -50,6 +49,7 @@
 export default {
   data () {
     return {
+      titlePeriod: 'За все время',
       formatDate: {
         format: 'dd.MM.yyyy',
         time: new Date(), // Время или строка(eg:'2017-12-12'),
@@ -79,28 +79,34 @@ export default {
         if (valid) {
           this.dialogDate = false
           this.dialog = true
-          /* const { rc } = await this.$axios.$get('/api/Api/loadDataApiEvents', {
-            params: this.rulesForm.value1
-          })
-          if (rc === 'ok') {
-            this.getList()
-            this.dialog = false
+
+          const [v1, v2] = this.rulesForm.value1
+          this.titlePeriod = `${v1} -${v2} `
+
+          /* const { user } = await this.$axios.$get("/api/Client/getuser");
+          if (user) {
+
+            this.dialog = false;
 
             this.$notify({
-              title: 'Выполнено!',
-              type: 'success',
-              message: 'Данные загружены'
-            })
+              title: "Выполнено!",
+              type: "success",
+              message: "Данные загружены"
+            });
           } else {
-            this.dialog = false
+            this.dialog = false;
             this.$notify({
-              title: 'Ошибка!',
-              type: 'error',
+              title: "Ошибка!",
+              type: "error",
               message: rc
-            })
+            });
           } */
         }
       })
+    },
+    close () {
+      this.titlePeriod = 'За все время'
+      this.dialogDate = false
     }
   }
 }

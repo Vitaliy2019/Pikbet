@@ -1,3 +1,5 @@
+import configEnm from './utils/configEnv'
+console.log(configEnm)
 module.exports = {
 
   modules: [
@@ -23,7 +25,8 @@ module.exports = {
   axios: {
 
     // baseURL: 'https://localhost:5001'
-    baseURL: 'https://api.pikbet.ru'
+    // baseURL: 'https://api.pikbet.ru'
+    baseURL: configEnm.urlApi
 
   },
   auth: {
