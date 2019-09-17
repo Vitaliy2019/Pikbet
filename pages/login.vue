@@ -129,7 +129,7 @@ export default {
     },
     onVerify: async function (response) {
       try {
-        // debugger; // eslint-disable-line
+         debugger; // eslint-disable-line
         this.loading = true
         await this.$auth.loginWith('local', {
           data: {
