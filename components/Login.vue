@@ -126,7 +126,7 @@ export default {
       }
     },
     onVerify: async function (response) {
-      try {
+      //try {
         // debugger; // eslint-disable-line
         this.loading = true
         await this.$auth.loginWith('local', {
@@ -138,12 +138,12 @@ export default {
         this.loading = false
         this.$store.commit('viewLogin')
         this.$router.push('/Cabinet/default')
-      } catch (e) {
+    /*  } catch (e) {
         this.$notify({
           type: 'error',
           title: 'Внимание',
           message: e.response.data
-        })
+        })*/
 
         this.resetRecaptcha()
         /* this.$message({
