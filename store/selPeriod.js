@@ -5,7 +5,7 @@ import configEnv from '../utils/configEnv'
 
 export const state = () => ({
   list: null,
-  period: null
+  period: 'За все время'
 })
 
 export const mutations = {

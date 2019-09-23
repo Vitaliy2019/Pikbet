@@ -30,7 +30,7 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-layout>
-
+    <TableStatisticPeriodMd></TableStatisticPeriodMd>
     <v-layout justify-center align-center wrap>
       <v-flex xs12 class="datacaper">
         <v-toolbar color="#303030" flat>
@@ -63,6 +63,7 @@ import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 import StaticMd from '~/components/Page/Cabinet/Default/staticMd'
 import SelPeriod from '~/components/Page/Cabinet/Default/selPeriodMd'
 import SelPeriodSm from '~/components/Page/Cabinet/Default/selPeriodSm'
+import TableStatisticPeriodMd from '~/components/Page/Cabinet/Default/tableStatisticPeriodMd'
 export default {
   middleware: ['auth'],
   name: 'cabinet-main',
@@ -72,7 +73,8 @@ export default {
     MenuCabinet,
     StaticMd,
     SelPeriod,
-    SelPeriodSm
+    SelPeriodSm,
+    TableStatisticPeriodMd
   },
   data () {
     return {

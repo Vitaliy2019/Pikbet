@@ -82,7 +82,7 @@ export default {
 
           const [v1, v2] = this.rulesForm.value1
           this.titlePeriod = `${v1} -${v2} `
-
+          this.$store.dispatch('selPeriod/setPeriod', this.titlePeriod)
           /* const { user } = await this.$axios.$get("/api/Client/getuser");
           if (user) {
 
@@ -106,6 +106,8 @@ export default {
     },
     close () {
       this.titlePeriod = 'За все время'
+      // За все время
+      this.$store.dispatch('selPeriod/setPeriod', 'За все время')
       this.dialogDate = false
     }
   }
