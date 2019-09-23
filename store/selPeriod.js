@@ -5,10 +5,14 @@ import configEnv from '../utils/configEnv'
 
 export const state = () => ({
   list: null,
-  period: 'За все время'
+  period: 'За все время',
+  score: 0
 })
 
 export const mutations = {
+  SET_SCORE (state, sts) {
+    state.score = sts
+  },
   SET_LIST (state, sts) {
     state.list = sts
   },
@@ -18,6 +22,11 @@ export const mutations = {
 }
 
 export const actions = {
+  setSqcore ({
+    commit
+  }, sts) {
+    commit('SET_SCORE', sts)
+  },
   setList ({
     commit
   }, sts) {
@@ -38,5 +47,6 @@ export const actions = {
 
 export const getters = {
   getList: state => state.list,
-  getPeriod: state => state.period
+  getPeriod: state => state.period,
+  getScore: state => state.score
 }

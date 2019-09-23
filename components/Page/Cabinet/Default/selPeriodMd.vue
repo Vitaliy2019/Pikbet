@@ -9,7 +9,7 @@
       <v-toolbar-title>
         <span>
           Баланс:
-          <span class="title green--text">10 000</span>
+          <span class="title green--text">{{score}}</span>
         </span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -71,6 +71,11 @@ export default {
           }
         ]
       }
+    }
+  },
+  computed: {
+    score () {
+      return this.$store.getters['selPeriod/getScore']
     }
   },
   methods: {

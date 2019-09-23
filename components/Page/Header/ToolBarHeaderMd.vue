@@ -34,7 +34,7 @@
       <span>Добавить прогноз</span>
     </v-tooltip>
 
-    <v-btn to="/capers">прогнозы</v-btn>
+    <v-btn to="/prognoz">прогнозы</v-btn>
     <v-btn to="/capers">капперы</v-btn>
 
     <v-btn to="/raitingBk">рейтинг бк</v-btn>

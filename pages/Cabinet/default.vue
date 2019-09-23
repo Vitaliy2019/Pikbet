@@ -25,12 +25,13 @@
             <v-card-text class>
               <sel-period class="hidden-sm-and-down"></sel-period>
               <sel-period-sm class="hidden-md-and-up"></sel-period-sm>
+              <TableStatisticPeriodMd></TableStatisticPeriodMd>
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-layout>
-    <TableStatisticPeriodMd></TableStatisticPeriodMd>
+
     <v-layout justify-center align-center wrap>
       <v-flex xs12 class="datacaper">
         <v-toolbar color="#303030" flat>
