@@ -25,7 +25,8 @@
             <v-card-text class>
               <sel-period class="hidden-sm-and-down"></sel-period>
               <sel-period-sm class="hidden-md-and-up"></sel-period-sm>
-              <TableStatisticPeriodMd></TableStatisticPeriodMd>
+              <TableStatisticPeriodMd class="hidden-sm-and-down"></TableStatisticPeriodMd>
+              <TableStatisticPeriodSm class="hidden-md-and-up"></TableStatisticPeriodSm>
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
@@ -65,6 +66,7 @@ import StaticMd from '~/components/Page/Cabinet/Default/staticMd'
 import SelPeriod from '~/components/Page/Cabinet/Default/selPeriodMd'
 import SelPeriodSm from '~/components/Page/Cabinet/Default/selPeriodSm'
 import TableStatisticPeriodMd from '~/components/Page/Cabinet/Default/tableStatisticPeriodMd'
+import TableStatisticPeriodSm from '~/components/Page/Cabinet/Default/tableStatisticPeriodSm'
 export default {
   middleware: ['auth'],
   name: 'cabinet-main',
@@ -75,7 +77,8 @@ export default {
     StaticMd,
     SelPeriod,
     SelPeriodSm,
-    TableStatisticPeriodMd
+    TableStatisticPeriodMd,
+    TableStatisticPeriodSm
   },
   data () {
     return {
