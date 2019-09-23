@@ -4,6 +4,16 @@
       <img src="/logo.png" style="height:30px" />
     </a>
     <v-spacer></v-spacer>
+    <v-tooltip bottom>
+      <template v-slot:activator="{on}">
+        <v-btn v-on="on" to="/capers">
+          <v-icon left>fa-plus</v-icon>прогноз
+        </v-btn>
+      </template>
+      <span>Добавить прогноз</span>
+    </v-tooltip>
+
+    <v-spacer></v-spacer>
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" icon right flat class="white--text">

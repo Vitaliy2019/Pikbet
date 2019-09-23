@@ -25,7 +25,15 @@
         </v-list-tile>
       </v-list>
     </v-menu>-->
-    <v-btn to="/capers">добавить прогноз</v-btn>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn v-on="on" to="/capers">
+          <v-icon left small>fa-plus</v-icon>прогноз
+        </v-btn>
+      </template>
+      <span>Добавить прогноз</span>
+    </v-tooltip>
+
     <v-btn to="/capers">прогнозы</v-btn>
     <v-btn to="/capers">капперы</v-btn>
 
