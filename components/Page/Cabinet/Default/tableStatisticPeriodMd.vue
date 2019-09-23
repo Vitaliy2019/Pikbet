@@ -1,5 +1,11 @@
 <template>
-  <v-data-table :loading="loading" :headers="headers" :items="desserts" class="elevation-1">
+  <v-data-table
+    :loading="loading"
+    hide-actions
+    :headers="headers"
+    :items="desserts"
+    class="elevation-1"
+  >
     <template v-slot:headers="props">
       <th v-for="(head, index) in headers" :key="index" class="text-xs-center">
         <span v-if="head.value=='Vyigreshey'" class="green--text">{{head.text}}</span>
