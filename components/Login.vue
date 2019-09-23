@@ -126,31 +126,31 @@ export default {
       }
     },
     onVerify: async function (response) {
-      //try {
-        // debugger; // eslint-disable-line
-        this.loading = true
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        })
-        this.loading = false
-        this.$store.commit('viewLogin')
-        this.$router.push('/Cabinet/default')
-    /*  } catch (e) {
+      // try {
+      // debugger; // eslint-disable-line
+      this.loading = true
+      await this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      })
+      this.loading = false
+      this.$store.commit('viewLogin')
+      this.$router.push('/Cabinet/default')
+      /*  } catch (e) {
         this.$notify({
           type: 'error',
           title: 'Внимание',
           message: e.response.data
-        })*/
+        }) */
 
-        this.resetRecaptcha()
-        /* this.$message({
+      this.resetRecaptcha()
+      /* this.$message({
             message: 'Неверный логин или пароль',
             type: 'error'
           }) */
-      }
+      // }
     },
     onExpired: function () {},
     resetRecaptcha () {

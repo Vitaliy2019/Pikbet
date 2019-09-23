@@ -22,23 +22,23 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       loading: false,
       headers: [
         {
-          text: "Кол-во прогнозов",
+          text: 'Кол-во прогнозов',
           /* align: 'center', */
           sortable: false,
-          value: "Count_stavok"
+          value: 'Count_stavok'
         },
-        { text: "Выигрышей", value: "Vyigreshey" },
-        { text: "Возвратов", value: "Vozvratov" },
-        { text: "Проигрышей", value: "Proigreshey" },
-        { text: "Проход", value: "Prohod" },
-        { text: "Ср. коэфф", value: "Sr_koeff" },
-        { text: "ROI", value: "Roi" },
-        { text: "Доход", value: "Dodhod" }
+        { text: 'Выигрышей', value: 'Vyigreshey' },
+        { text: 'Возвратов', value: 'Vozvratov' },
+        { text: 'Проигрышей', value: 'Proigreshey' },
+        { text: 'Проход', value: 'Prohod' },
+        { text: 'Ср. коэфф', value: 'Sr_koeff' },
+        { text: 'ROI', value: 'Roi' },
+        { text: 'Доход', value: 'Dodhod' }
       ],
       desserts: [
         {
@@ -52,23 +52,23 @@ export default {
           Dodhod: 56
         }
       ]
-    };
-  },
-  computed: {
-    period() {
-      return this.$store.getters["selPeriod/getPeriod"];
     }
   },
-  mounted() {
-    this.desserts = [];
-    this.getList();
+  computed: {
+    period () {
+      return this.$store.getters['selPeriod/getPeriod']
+    }
+  },
+  mounted () {
+    this.desserts = []
+    this.getList()
   },
   methods: {
-    async getList() {
-      this.loading = true;
+    async getList () {
+      this.loading = true
 
       // В будущем слелать запрос с учето периода или за все время
-      const { user } = await this.$axios.$get("/api/Client/getuser");
+      const { user } = await this.$axios.$get('/api/Client/getuser')
       const obj = {
         Count_stavok: user.Count_stavok,
         Vyigreshey: user.Vyigreshey,
@@ -78,12 +78,12 @@ export default {
         Sr_koeff: user.Sr_koeff,
         Roi: user.Roi,
         Dodhod: user.Dodhod
-      };
+      }
 
-      this.desserts.push(obj);
-      this.$store.dispatch("selPeriod/setPeriod", user.Score);
-      this.loading = false;
+      this.desserts.push(obj)
+      this.$store.dispatch('selPeriod/setPeriod', user.Score)
+      this.loading = false
     }
   }
-};
+}
 </script>
