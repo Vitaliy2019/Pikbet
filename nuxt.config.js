@@ -5,8 +5,7 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth'
-    // '@nuxtjs/redirect-module'
-    // '@nuxtjs/sitemap'
+
   ],
   /* sitemap: {
      path: '/sitemap.xml',
