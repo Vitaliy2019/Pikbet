@@ -58,4 +58,7 @@ export default {
   padding: 10px; /* Поля вокруг текста */
   color: #fff; /* Цвет текста */
 }
+.trans h1 {
+  font-size: 4em;
+}
 </style>
