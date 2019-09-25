@@ -3,11 +3,6 @@
     <v-layout column justify-center align-center>
       <bread-crumbs :items="items"></bread-crumbs>
     </v-layout>
-    <v-layout wrap align-center>
-      <v-flex xs12 sm6 d-flex>
-        <v-select color="yellow" :items="itemsS" label="Выбрать за"></v-select>
-      </v-flex>
-    </v-layout>
 
     <v-layout class="datacaper">
       <v-expansion-panel v-model="panel" expand>
@@ -29,32 +24,10 @@
               <TableStatisticPeriodSm class="hidden-md-and-up"></TableStatisticPeriodSm>
             </v-card-text>
           </v-card>
+          <ButtonCompletePrognoz></ButtonCompletePrognoz>
+          <ButtonNoCompletePrognoz></ButtonNoCompletePrognoz>
         </v-expansion-panel-content>
       </v-expansion-panel>
-    </v-layout>
-
-    <v-layout justify-center align-center wrap>
-      <v-flex xs12 class="datacaper">
-        <v-toolbar color="#303030" flat>
-          <img src="/graphic-light.png" />
-          <v-spacer></v-spacer>
-          <img src="/calculator.svg" />
-          <v-toolbar-title>
-            <span class="yellow--text text--darken-2">Статистика капера</span>
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-      </v-flex>
-
-      <!--<widget-static
-        v-for="(item, index) in itemsC"
-        :key="index"
-        :sum="item.value"
-        :title="item.title"
-        :icon="item.icon"
-        :zn="item.zn"
-      />-->
-      <v-divider />
     </v-layout>
   </v-container>
 </template>
@@ -67,6 +40,9 @@ import SelPeriod from '~/components/Page/Cabinet/Default/selPeriodMd'
 import SelPeriodSm from '~/components/Page/Cabinet/Default/selPeriodSm'
 import TableStatisticPeriodMd from '~/components/Page/Cabinet/Default/tableStatisticPeriodMd'
 import TableStatisticPeriodSm from '~/components/Page/Cabinet/Default/tableStatisticPeriodSm'
+import ButtonCompletePrognoz from '~/components/Page/Cabinet/Default/buttonCompletePrognoz'
+import ButtonNoCompletePrognoz from '~/components/Page/Cabinet/Default/buttonNoCompletePrognoz'
+
 export default {
   middleware: ['auth'],
   name: 'cabinet-main',
@@ -78,12 +54,14 @@ export default {
     SelPeriod,
     SelPeriodSm,
     TableStatisticPeriodMd,
-    TableStatisticPeriodSm
+    TableStatisticPeriodSm,
+    ButtonCompletePrognoz,
+    ButtonNoCompletePrognoz
   },
   data () {
     return {
       panel: [true],
-      itemsS: ['последнюю неделю', 'понедельно', 'помесячно', 'за все время.'],
+
       items: [
         {
           text: 'Главная',
