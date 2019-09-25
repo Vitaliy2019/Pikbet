@@ -1,5 +1,5 @@
 <template>
-  <v-carousel height="200" cycle show-arrows-on-hover hide-delimiters>
+  <v-carousel height="200" cycle show-arrows-on-hover hide-delimiters interval="30000">
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-sheet height="200">
         <v-img :src="slide.img" width="100%">
