@@ -15,6 +15,8 @@
     </div>
     <div class="text-xs-rigth">
       <v-rating
+        small
+        readonly
         v-model="rating"
         :length="length"
         color="red lighten-3"

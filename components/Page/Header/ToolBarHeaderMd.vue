@@ -27,9 +27,7 @@
     </v-menu>-->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" to="/capers">
-          <v-icon left small>fa-plus</v-icon>прогноз
-        </v-btn>
+        <v-btn v-on="on" to="/capers">добавить прогноз</v-btn>
       </template>
       <span>Добавить прогноз</span>
     </v-tooltip>
@@ -101,17 +99,9 @@ export default {
       menu: null,
       items: [
         {
-          icon: 'menu_book',
-          href: '#',
-          title: 'Кабинет',
-          click: e => {
-            this.$router.push('/Cabinet/default')
-          }
-        },
-        {
           icon: 'account_balance',
           href: '#',
-          title: 'Баланс',
+          title: 'Банк',
           click: e => {
             this.$router.push('/Cabinet/balance')
           }
@@ -121,7 +111,7 @@ export default {
           href: '#',
           title: 'Профиль',
           click: e => {
-            this.$router.push('/Cabinet/profile')
+            this.$router.push('/Cabinet/default')
           }
         },
         {

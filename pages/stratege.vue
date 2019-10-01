@@ -154,4 +154,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.v-card {
+  border-color: white;
+  border-style: solid;
+}
+</style>
 

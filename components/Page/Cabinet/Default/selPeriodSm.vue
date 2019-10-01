@@ -6,7 +6,7 @@
     </v-flex>
     <v-flex xs12 class="pt-2">
       <span>
-        Баланс:
+        Банк:
         <span class="title green--text">10 000</span>
       </span>
     </v-flex>

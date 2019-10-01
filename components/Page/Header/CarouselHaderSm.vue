@@ -1,7 +1,7 @@
 <template>
-  <v-carousel height="200" cycle show-arrows-on-hover hide-delimiters interval="30000">
+  <v-carousel height="106" cycle show-arrows-on-hover hide-delimiters interval="30000">
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
-      <v-sheet height="200">
+      <v-sheet height="106">
         <v-img :src="slide.img" width="100%">
           <v-container align-center fill-height justify-center>
             <v-layout column align-start justify-center>
@@ -32,12 +32,12 @@ export default {
         {
           title: 'Стань успешным каппером',
           context: 'Регистрируйся на сайте и зарабатывай на своих прогнозах',
-          img: '/banner1_clear.svg'
+          img: '/500-106banner1.jpg'
         },
         {
           title: 'Следи за успешными капперами',
           context: 'Повторяй ставки и выигрывай вместе с ними',
-          img: '/banner2_clear.svg'
+          img: '/500-106banner2.jpg'
         }
       ]
     }

@@ -8,7 +8,7 @@
       <v-spacer />
       <v-toolbar-title>
         <span>
-          Баланс:
+          Банк:
           <span class="title green--text">{{score}}</span>
         </span>
       </v-toolbar-title>

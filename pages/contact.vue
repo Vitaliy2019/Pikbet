@@ -3,67 +3,23 @@
     <bread-crumbs :items="items"></bread-crumbs>
     <v-layout align-center justify-center>
       <v-flex offset-sm1 shrink>
-        <h2>Администрация:</h2>
-        <hr class="white">
+        <h2>Наши контакты:</h2>
+        <hr class="white" />
         <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">phone</v-icon>
-          <span class="subheading">+7 xxx xxx xx xx</span>
-          <span>&nbsp;-&nbsp;позвони администрации</span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">alternate_email</v-icon>
-          <span class="subheading">info@pikbet.ru</span>
-          <span>&nbsp;-&nbsp;напиши администрации</span>
-        </v-layout>
-        <h2>Отдел по работе с клиентами:</h2>
-        <hr class="white">
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">phone</v-icon>
-          <span class="subheading">+7 yyy yyy yy yy</span>
-          <span>&nbsp;-&nbsp;работа с клиентами</span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">alternate_email</v-icon>
-          <span class="subheading">contact@pikbet.ru</span>
-          <span>&nbsp;-&nbsp;работа с клиентами</span>
-        </v-layout>
-        <h2>Технический отдел:</h2>
-        <hr class="white">
-
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">phone</v-icon>
-          <span class="subheading">+7 xxx xxx xx xx</span>
-          <span>&nbsp;-&nbsp;техническая поддержка</span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">alternate_email</v-icon>
-          <span class="subheading">support@pikbet.ru</span>
-          <span>&nbsp;-&nbsp;техническая поддержка</span>
-        </v-layout>
-        <h2>Социальные сети:</h2>
-        <hr class="white">
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa fa-vk</v-icon>
-          <span class="subheading">
-            <a href="#" target="_blank">В контакте</a>
-          </span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa fa-facebook</v-icon>
+          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-youtube</v-icon>
           <span class="subheading pl-2">
-            <a href="#" target="_blank">facebook</a>
+            <a href="#" target="_blank">Мы в ютубе</a>
           </span>
         </v-layout>
         <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa fa-telegram</v-icon>
-          <span class="subheading">telegram</span>
+          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-twitter</v-icon>
+          <span class="subheading pl-2">
+            <a href="#" target="_blank">Мы в твитере</a>
+          </span>
         </v-layout>
-
-        <h2>Наш адрес:</h2>
-        <hr class="white">
         <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">account_balance</v-icon>
-          <span class="subheading">МО, г. Краснознаменск, ул. Связистов, д.1, оф. 112</span>
+          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-instagram</v-icon>
+          <span class="subheading pl-2">Мы в инстаграм</span>
         </v-layout>
       </v-flex>
     </v-layout>
