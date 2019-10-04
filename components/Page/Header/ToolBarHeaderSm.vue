@@ -6,7 +6,7 @@
     <v-spacer></v-spacer>
     <v-tooltip bottom>
       <template v-slot:activator="{on}">
-        <v-btn v-on="on" to="/capers">
+        <v-btn v-on="on" to="/Cabinet/addPrognoz">
           <v-icon left>fa-plus</v-icon>прогноз
         </v-btn>
       </template>

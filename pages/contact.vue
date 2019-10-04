@@ -1,27 +1,33 @@
 <template>
   <v-container align-center justify-center>
     <bread-crumbs :items="items"></bread-crumbs>
-    <v-layout align-center justify-center>
-      <v-flex offset-sm1 shrink>
-        <h2>Наши контакты:</h2>
-        <hr class="white" />
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-youtube</v-icon>
-          <span class="subheading pl-2">
-            <a href="#" target="_blank">Мы в ютубе</a>
-          </span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-twitter</v-icon>
-          <span class="subheading pl-2">
-            <a href="#" target="_blank">Мы в твитере</a>
-          </span>
-        </v-layout>
-        <v-layout my-2 align-center>
-          <v-icon aria-hidden="true" class="mr-3 yellow--text">fa-instagram</v-icon>
-          <span class="subheading pl-2">Мы в инстаграм</span>
-        </v-layout>
-      </v-flex>
+    <v-layout column align-center justify-center>
+      <v-card width="60%">
+        <div>&nbsp;</div>
+        <v-spacer></v-spacer>
+        <v-flex xs12 align-center justify-center class="text-xs-center">
+          <h2>Наши контакты:</h2>
+
+          <v-layout my-2 align-center class="text-xs-center">
+            <v-icon aria-hidden="true" class="ml-5 yellow--text">fa-youtube</v-icon>
+            <span class="subheading pl-2">
+              <a href="#" target="_blank">Мы в ютубе</a>
+            </span>
+          </v-layout>
+          <v-layout my-2 align-center>
+            <v-icon aria-hidden="true" class="ml-5 yellow--text">fa-twitter</v-icon>
+            <span class="subheading pl-2">
+              <a href="#" target="_blank">Мы в твитере</a>
+            </span>
+          </v-layout>
+          <v-layout my-2 align-center>
+            <v-icon aria-hidden="true" class="ml-5 yellow--text">fa-instagram</v-icon>
+            <span class="subheading pl-2">Мы в инстаграм</span>
+          </v-layout>
+        </v-flex>
+        <v-spacer></v-spacer>
+        <div></div>
+      </v-card>
     </v-layout>
     <div>
       <h2 class="text-xs-center my-3">Информационная поддержка</h2>
@@ -91,7 +97,12 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail должен быть правильный'
       ],
       select: null,
-      itemss: ['Тема 1', 'Тема 2', 'Тема 3', 'Тема 4'],
+      itemss: [
+        'Не рассчитан или непрвильно рассчитан прогноз',
+        'Предложения по улучшению сайта',
+        'Комерческое предложение и реклама на сайте',
+        'Другое'
+      ],
       checkbox: false
     }
   },
@@ -120,3 +131,9 @@ export default {
 }
 </script>
 
+<style scoped>
+.v-card {
+  border-color: white;
+  border-style: solid;
+}
+</style>

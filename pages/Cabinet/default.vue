@@ -9,12 +9,12 @@
         <v-expansion-panel-content>
           <template v-if="panel[0]" v-slot:header>
             <v-icon>fa-bar-chart</v-icon>
-            <div>Статистика капера</div>
+            <div>Статистика каппера</div>
           </template>
           <template v-else v-slot:header>
             <v-icon>fa-bar-chart</v-icon>
             <static-md class="hidden-sm-and-down"></static-md>
-            <div class="hidden-md-and-up">Статистика капера</div>
+            <div class="hidden-md-and-up">Статистика каппера</div>
           </template>
           <v-card>
             <v-card-text class>

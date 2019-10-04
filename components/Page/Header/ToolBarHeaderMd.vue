@@ -27,7 +27,7 @@
     </v-menu>-->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" to="/capers">добавить прогноз</v-btn>
+        <v-btn v-on="on" to="/Cabinet/addPrognoz">добавить прогноз</v-btn>
       </template>
       <span>Добавить прогноз</span>
     </v-tooltip>
