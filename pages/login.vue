@@ -65,9 +65,9 @@
   </v-container>
 </template>
 <script>
-import { validationMixin } from "vuelidate";
-import { required, email } from "vuelidate/lib/validators";
-import VueRecaptcha from "vue-recaptcha";
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
+import VueRecaptcha from 'vue-recaptcha'
 export default {
   components: { VueRecaptcha },
   mixins: [validationMixin],
@@ -82,64 +82,64 @@ export default {
     loading: false,
     drawer: null,
     valid: true,
-    password: "",
-    email: ""
+    password: '',
+    email: ''
   }),
   computed: {
-    passwordErrors() {
-      const errors = [];
-      if (!this.$v.password.$dirty) return errors;
-      !this.$v.password.required && errors.push("Требуется пароль.");
-      return errors;
+    passwordErrors () {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      !this.$v.password.required && errors.push('Требуется пароль.')
+      return errors
     },
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("E-mail должен быть правильный");
-      !this.$v.email.required && errors.push("Требуется e-mail");
-      return errors;
+    emailErrors () {
+      const errors = []
+      if (!this.$v.email.$dirty) return errors
+      !this.$v.email.email && errors.push('E-mail должен быть правильный')
+      !this.$v.email.required && errors.push('Требуется e-mail')
+      return errors
     }
   },
   head: {
-    title: "🚀 Авторизация для входа в личный кабинет",
+    title: '🚀 Авторизация для входа в личный кабинет',
     meta: [
       {
-        hid: "description",
-        name: "description",
-        content: "Авторизация для входа в личный кабинет"
+        hid: 'description',
+        name: 'description',
+        content: 'Авторизация для входа в личный кабинет'
       }
     ]
   },
-  created() {
-    this.$v.$touch();
+  created () {
+    this.$v.$touch()
   },
   methods: {
-    Registration() {
-      this.$store.commit("viewLogin");
-      this.$router.push("/registration");
+    Registration () {
+      this.$store.commit('viewLogin')
+      this.$router.push('/registration')
     },
-    onSubmit: function() {
+    onSubmit: function () {
       // debugger; // eslint-disable-line
-      this.$v.$touch();
+      this.$v.$touch()
       if (!this.$v.$invalid) {
-        this.$refs.invisibleRecaptcha.execute();
+        this.$refs.invisibleRecaptcha.execute()
         // this.$store.commit('viewLogin')
         // this.$router.push('/Cabinet')
       }
     },
-    onVerify: async function(response) {
+    onVerify: async function (response) {
       // try {
       debugger; // eslint-disable-line
-      this.loading = true;
-      await this.$auth.loginWith("local", {
+      this.loading = true
+      await this.$auth.loginWith('local', {
         data: {
           email: this.email,
           password: this.password
         }
-      });
-      this.loading = false;
-      this.$store.commit("viewLogin");
-      this.$router.push("/Cabinet/default");
+      })
+      this.loading = false
+      this.$store.commit('viewLogin')
+      this.$router.push('/Cabinet/default')
       /* } catch (e) {
         this.$notify({
           type: 'error',
@@ -147,19 +147,19 @@ export default {
           message: e
         }) */
 
-      this.resetRecaptcha();
+      this.resetRecaptcha()
       this.$message({
-        message: "Неверный логин или пароль",
-        type: "error"
-      });
+        message: 'Неверный логин или пароль',
+        type: 'error'
+      })
       // }
     },
-    onExpired: function() {},
-    resetRecaptcha() {
-      this.loading = false;
-      this.$refs.invisibleRecaptcha.reset(); // Direct call reset method
+    onExpired: function () {},
+    resetRecaptcha () {
+      this.loading = false
+      this.$refs.invisibleRecaptcha.reset() // Direct call reset method
     }
   }
-};
+}
 </script>
 

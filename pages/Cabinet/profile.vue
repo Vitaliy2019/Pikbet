@@ -1,9 +1,9 @@
 <template>
-  <v-container grid-list-xl>
-    <v-layout column justify-center>
+  <v-container grid-list-xl align-center justify-center>
+    <v-layout wrap column justify-center align-center>
       <bread-crumbs :items="items"></bread-crumbs>
-      <v-layout row wrap align-center>
-        <v-flex xs4>
+      <v-layout row wrap align-start justify-center>
+        <v-flex xs12 sm12 md4>
           <v-card class="text-xs-center">
             <v-avatar size="70" class="my-3">
               <img :src="kaper.Avatar" alt="alt" />
@@ -21,15 +21,62 @@
             </div>
           </v-card>
         </v-flex>
-        <v-flex xs8>
-          <v-card>
-            <v-layout >
-              <v-flex xs5>
-                <v-card>
-                iougffgjhiy
-              </v-card></v-flex>
-              <v-flex xs5>bcbsdkcsdhbc</v-flex>
-            </v-layout>
+        <v-flex xs12 sm12 md8>
+          <v-card class="pt-2">
+            <v-form ref="form" v-model="valid" lazy-validation width="100%">
+              <v-layout wrap class="mx-1">
+                <v-flex xs12 sm12 md6>
+                  <v-card class="px-2">
+                    <v-text-field v-model="kaper.City" label="Город"></v-text-field>
+                    <v-select v-model="kaper.Pol" :items="itemsP" label="Выберите пол"></v-select>
+                    <v-text-field v-model="kaper.Family" label="Фамилия"></v-text-field>
+                    <v-text-field v-model="kaper.Fnme" label="Имя"></v-text-field>
+                    <v-text-field v-model="kaper.Email" label="E-mail"></v-text-field>
+                    <v-text-field v-model="kaper.Tel" label="Телефон"></v-text-field>
+                    <v-text-field v-model="kaper.N_yandex_dengi" label="Яндекс.Деньги"></v-text-field>
+                    <v-text-field
+                      required
+                      :rules="passwRules"
+                      v-model="kaper.Pasword"
+                      label="Пароль"
+                    ></v-text-field>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 sm12 md6>
+                  <v-card class="px-2">
+                    <div class="pt-3">
+                      <label class="pr-2">Счет</label>
+                      <v-chip>
+                        <v-avatar class="yellow darken-2">₽</v-avatar>
+                        {{this.$options.filters.nFormatter(kaper.Score)}}
+                      </v-chip>
+                    </div>
+                    <div class="pt-3">
+                      <label>Рейтинг</label>
+                      <v-rating
+                        readonly
+                        v-model="kaper.Rating"
+                        color="yellow accent-4"
+                        hover
+                        size="18"
+                      ></v-rating>
+                    </div>
+                    <div class="pt-3">
+                      <label>Остаток</label>
+                      <v-chip>{{this.$options.filters.nFormatter(kaper.Count_stavok)}}</v-chip>
+                    </div>
+                    <div class="pt-3">
+                      <label>Доход</label>
+                      <v-chip>{{this.$options.filters.nFormatter(kaper.Dodhod)}}</v-chip>
+                    </div>
+                    <div class="pt-3">
+                      <label>Проход</label>
+                      <v-chip>{{this.$options.filters.nFormatter(kaper.Prohod)}}</v-chip>
+                    </div>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-form>
           </v-card>
         </v-flex>
       </v-layout>
@@ -45,7 +92,6 @@ export default {
   name: 'profile',
   data () {
     return {
-      profile: {},
       items: [
         {
           text: 'Главная',
@@ -62,7 +108,8 @@ export default {
           disabled: true,
           href: ''
         }
-      ]
+      ],
+      itemsP: ['мужской', 'женский']
     }
   },
   computed: {
@@ -82,6 +129,10 @@ export default {
         this.$store.commit('kaper/SET_PR_OPERATION', newValue)
       }
     }
+  },
+  created () {
+    console.log(this.$options.filters)
+    // console.log(this.kaper)
   },
   methods: {}
 }
