@@ -8,6 +8,8 @@
             color="white"
             :items="itemsCompetitions"
             v-model="valueCompetitions"
+            item-text="league_name"
+            item-value="league_id"
             label="Соревнование"
           ></v-select>
         </v-flex>
@@ -74,6 +76,7 @@ export default {
   },
   fetch ({ store }) {
     store.dispatch('addPrognoz/getValueCountry')
+    store.dispatch('addPrognoz/getValueCompetitions')
   }
 }
 </script>

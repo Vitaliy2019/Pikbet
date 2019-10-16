@@ -61,7 +61,7 @@
     >
       <v-btn icon large flat slot="activator">
         <v-avatar size="30px">
-          <img src="/avatar/default.png" alt="Аватар" />
+          <img :src="kaper.Avatar" alt="Аватар" />
         </v-avatar>
       </v-btn>
       <v-list class="pa-0">
@@ -111,7 +111,7 @@ export default {
           href: '#',
           title: 'Профиль',
           click: e => {
-            this.$router.push('/Cabinet/default')
+            this.$router.push('/Cabinet/profile')
           }
         },
         {
@@ -119,7 +119,7 @@ export default {
           href: '#',
           title: 'Мои прогнозы',
           click: e => {
-            this.$router.push('/Cabinet/prognozes')
+            this.$router.push('/Cabinet/default')
           }
         },
         {
@@ -133,6 +133,9 @@ export default {
   },
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    kaper () {
+      return this.$store.getters['kaper/getKaper']
+    },
     dialog: {
       get () {
         return this.$store.state.login
@@ -143,6 +146,9 @@ export default {
     }
   },
   mounted () {
+    if (this.isAuthenticated) {
+      this.$store.dispatch('kaper/initKaper', this.$auth.user.Id)
+    }
     // debugger; // eslint-disable-line
     // console.log(this.isAuthenticated);
   },

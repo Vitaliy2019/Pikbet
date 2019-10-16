@@ -40,8 +40,24 @@ export const actions = {
     } = await this.$axios.$get('/api/Countries/getListAllVisible')
     console.log('countries', countries)
     commit('SET_VALUE_COUNTRY', countries)
+  },
+  async getValueCompetitions ({
+    commit
+  }) {
+    const listQuery = {
+      Page: 1,
+      Limit: 1000,
+      Title: '',
+      ValueC: ''
+    }
+    const {
+      competitions
+    } = await this.$axios.$get('/api/Competitions/', {
+      params: listQuery
+    })
+    console.log('competitions', competitions)
+    commit('SET_VALUE_COMPETITIONS', competitions)
   }
-
 }
 
 export const getters = {
