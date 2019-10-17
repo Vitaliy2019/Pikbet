@@ -1,4 +1,5 @@
 export const state = () => ({
+  dialogPassword: false,
   kaper: {
     Id: 0,
     Login: '',
@@ -28,6 +29,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  SET_DIALOG_PASSWORD (state, sts) {
+    state.dialogPassword = sts
+  },
   SET_KAPER_AVTATR (state, sts) {
     state.kaper.Avatar = sts
   },
@@ -71,6 +75,11 @@ export const mutations = {
   }
 }
 export const actions = {
+  setDialogPassword ({
+    commit
+  }, sts) {
+    commit('SET_DIALOG_PASSWORD', sts)
+  },
   setKaperAvatar ({
     commit
   }, sts) {
@@ -112,6 +121,7 @@ export const actions = {
   }
 }
 export const getters = {
+  getDilogPassword: state => state.dialogPassword,
   getKaperAvatar: (state) => state.kaper.Avatar,
   getKaper (state) {
     return state.kaper
