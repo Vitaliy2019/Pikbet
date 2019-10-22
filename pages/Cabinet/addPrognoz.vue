@@ -6,23 +6,25 @@
         <v-flex d-flex xs12 sm6 md3>
           <v-select
             color="white"
-            :items="itemsCompetitions"
-            v-model="valueCompetitions"
-            item-text="league_name"
-            item-value="league_id"
-            label="Соревнование"
+            item-text="country_name"
+            item-value="country_name"
+            :items="itemsCountry"
+            v-model="selectedCountry"
+            label="Страна"
+            @change="changeCountry"
           ></v-select>
         </v-flex>
         <v-flex d-flex xs12 sm6 md3>
           <v-select
             color="white"
-            item-text="country_name"
-            item-value="country_id"
-            :items="itemsCountry"
-            v-model="valueCountry"
-            label="Страна"
+            :items="itemsCompetitions"
+            v-model="selectedCompetitions"
+            item-text="league_name"
+            item-value="league_name"
+            label="Соревнование"
           ></v-select>
         </v-flex>
+
         <v-flex d-flex xs12 sm6 md3>
           <v-select color="white" :items="itemsPeriod" v-model="valuePeriod" label="Период"></v-select>
         </v-flex>
@@ -37,8 +39,8 @@ export default {
   components: { BreadCrumbs },
   data () {
     return {
-      valueCompetitions: '',
-      valueCountry: '',
+      // valueCompetitions: '',
+      // valueCountry: "",
       valuePeriod: 'В любое время',
       itemsPeriod: [
         'В любое время',
@@ -67,6 +69,23 @@ export default {
     }
   },
   computed: {
+    selectedCompetitions: {
+      get () {
+        return this.$store.getters['addPrognoz/getSelectedCompetitions']
+      },
+      set (newValue) {
+        this.store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
+      }
+    },
+    selectedCountry: {
+      get () {
+        return this.$store.getters['addPrognoz/getSelectedCountry']
+      },
+      async set (newValue) {
+        await this.$store.dispatch('addPrognoz/setSelectedCountry', newValue)
+        await this.$store.dispatch('addPrognoz/getValueCompetitions')
+      }
+    },
     itemsCountry () {
       return this.$store.getters['addPrognoz/getValueCountry']
     },
@@ -74,9 +93,14 @@ export default {
       return this.$store.getters['addPrognoz/getValueCompetitions']
     }
   },
-  fetch ({ store }) {
-    store.dispatch('addPrognoz/getValueCountry')
-    store.dispatch('addPrognoz/getValueCompetitions')
+  async fetch ({ store }) {
+    await store.dispatch('addPrognoz/getValueCountry')
+    await store.dispatch('addPrognoz/getValueCompetitions')
+  },
+  methods: {
+    changeCountry () {
+
+    }
   }
 }
 </script>

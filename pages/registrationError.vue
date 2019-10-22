@@ -48,7 +48,6 @@ export default {
     }
   },
   asyncData ({ query }) {
-    console.log(query)
     return { message: query.mess }
   }
 }

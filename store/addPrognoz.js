@@ -2,10 +2,18 @@
 export const state = () => ({
   valueCompetitions: '',
   valueCountry: '',
-  valuePeriod: 'В любое время'
+  valuePeriod: 'В любое время',
+  selectedCountry: '',
+  selectedComprtitions: ''
 })
 
 export const mutations = {
+  SET_SELECTED_COMPETITIONS (state, sts) {
+    state.selectedComprtitions = sts
+  },
+  SET_SELECT_COUNTRY (state, sts) {
+    state.selectedCountry = sts
+  },
   SET_VALUE_COUNTRY (state, sts) {
     state.valueCountry = sts
   },
@@ -17,6 +25,18 @@ export const mutations = {
   }
 }
 export const actions = {
+  setSelectedCompetitions ({
+    commit
+  }, sts) {
+    commit('SET_SELECTED_COMPETITIONS', sts)
+  },
+  setSelectedCountry ({
+    commit,
+    dispatch
+  }, sts) {
+    commit('SET_SELECT_COUNTRY', sts)
+    dispatch('getValueCompetitions')
+  },
   setValueCountry ({
     commit
   }, sts) {
@@ -38,16 +58,20 @@ export const actions = {
     const {
       countries
     } = await this.$axios.$get('/api/Countries/getListAllVisible')
-    console.log('countries', countries)
+
     commit('SET_VALUE_COUNTRY', countries)
+
+    commit('SET_SELECT_COUNTRY', countries[0].country_name)
   },
   async getValueCompetitions ({
-    commit
+    commit,
+    state
   }) {
+    debugger; // eslint-disable-line
     const listQuery = {
       Page: 1,
       Limit: 1000,
-      Title: '',
+      Tile: state.selectedCountry || '',
       ValueC: ''
     }
     const {
@@ -55,12 +79,14 @@ export const actions = {
     } = await this.$axios.$get('/api/Competitions/', {
       params: listQuery
     })
-    console.log('competitions', competitions)
     commit('SET_VALUE_COMPETITIONS', competitions)
+    commit('SET_SELECTED_COMPETITIONS', competitions[0].league_name)
   }
 }
 
 export const getters = {
+  getSelectedCompetitions: state => state.selectedComprtitions,
+  getSelectedCountry: state => state.selectedCountry,
   getValueCountry: state => state.valueCountry,
   getValueCompetitions: state => state.valueCompetitions,
   getPeriod: state => state.valuePeriod

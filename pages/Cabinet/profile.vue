@@ -210,11 +210,7 @@ export default {
   },
   methods: {
     clickPassword () {
-      debugger; //eslint-disable-line
       this.$store.dispatch('kaper/setDialogPassword', true)
-      // this.$store.commit('kaper/SET_DIALOG_PASSWORD', true)
-
-      console.log(this.$store.state.kaper.dialogPassword)
     },
     clickAvatar (avatar) {
       this.kaper.Avatar = avatar
