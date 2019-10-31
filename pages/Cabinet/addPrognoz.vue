@@ -26,29 +26,35 @@
         </v-flex>
 
         <v-flex d-flex xs12 sm6 md3>
-          <v-select color="white" :items="itemsPeriod" v-model="valuePeriod" label="Период"></v-select>
+          <v-select
+            color="white"
+            :items="itemsPeriod"
+            item-text="title"
+            item-value="value"
+            v-model="valuePeriod"
+            label="Период"
+          ></v-select>
         </v-flex>
       </v-layout>
     </v-layout>
+    <list-prognoz></list-prognoz>
   </v-container>
 </template>
 <script>
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
+import ListPrognoz from '~/components/Page/Cabinet/listPrognoz'
 export default {
   middleware: ['auth'],
-  components: { BreadCrumbs },
+  components: { BreadCrumbs, ListPrognoz },
   data () {
     return {
-      // valueCompetitions: '',
-      // valueCountry: "",
-      valuePeriod: 'В любое время',
+      valuePeriod: '0',
       itemsPeriod: [
-        'В любое время',
-        'В ближайшие 6 часов',
-        'В ближайшие 12 часов',
-        'В ближайшие сутки'
+        { title: 'В любое время', value: 0 },
+        { title: 'В ближайшие 6 часов', value: 6 },
+        { title: 'В ближайшие 12 часов', value: 12 },
+        { title: 'В ближайшие сутки', value: 24 }
       ],
-      // itemsCountry: [],
       items: [
         {
           text: 'Главная',
@@ -97,10 +103,9 @@ export default {
     await store.dispatch('addPrognoz/getValueCountry')
     await store.dispatch('addPrognoz/getValueCompetitions')
   },
-  methods: {
-    changeCountry () {
 
-    }
+  methods: {
+    changeCountry () {}
   }
 }
 </script>
