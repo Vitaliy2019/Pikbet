@@ -1,10 +1,14 @@
 export const strict = false
 export const state = () => ({
   sidebar: false,
-  login: false
+  login: false,
+  formThead: []
 })
 
 export const mutations = {
+  SET_FORMTHEAD (state, sts) {
+    state.formThead = sts
+  },
   toggleSidebar (state) {
     state.sidebar = !state.sidebar
   },

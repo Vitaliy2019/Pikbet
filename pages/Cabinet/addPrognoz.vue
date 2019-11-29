@@ -49,6 +49,12 @@ export default {
   data () {
     return {
       valuePeriod: '0',
+      formatDate: {
+        format: 'dd.MM.yyyy hh:mm',
+        time: new Date(), // Время или строка(eg:'2017-12-12'),
+        type: 'fmt',
+        autoUpdate: false
+      },
       itemsPeriod: [
         { title: 'В любое время', value: 0 },
         { title: 'В ближайшие 6 часов', value: 6 },
@@ -80,7 +86,7 @@ export default {
         return this.$store.getters['addPrognoz/getSelectedCompetitions']
       },
       set (newValue) {
-        this.store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
+        this.$store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
       }
     },
     selectedCountry: {
@@ -103,9 +109,11 @@ export default {
     await store.dispatch('addPrognoz/getValueCountry')
     await store.dispatch('addPrognoz/getValueCompetitions')
   },
-
   methods: {
-    changeCountry () {}
+    async changeCountry (country) {
+      debugger; // eslint-disable-line
+      await this.$store.dispatch('setSelectedCountry', this.selectedCountry)
+    }
   }
 }
 </script>

@@ -1,60 +1,44 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-        :pagination.sync="pagination"
-        :total-items="totalDesserts"
-        :loading="prGetList"
-        class="elevation-1"
-      >
-        <template v-slot:headers="props">
-          <tr>
-            <template v-for="header in props.headers">
-              <th
-                v-if="header.text==='Матч'"
-                :key="header.text"
-                :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
-                @click="changeSort(header.value)"
-              >
-                <v-icon small>arrow_upward</v-icon>
-                Предстоящий {{ header.text }}
-              </th>
-              <th
-                v-else
-                :key="header.text"
-                :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
-                @click="changeSort(header.value)"
-              >
-                <v-icon small>arrow_upward</v-icon>
-                {{ header.text }}
-              </th>
+      <el-table ref="multipleTable" v-loading="prGetList" :data="desserts" style="width: 100%">
+        <template v-for="(fruit, index) in LangFormThead">
+          <el-table-column
+            v-if="fruit.chkbD"
+            :key="'data-'+index"
+            sortable
+            :label="fruit.lngName"
+            :property="fruit.nameField"
+          >
+            <template slot-scope="scope">
+              <vueDateFormat
+                v-if="fruit.nameField==='Odd_date'"
+                :format="formatDate.format"
+                :time="scope.row[fruit.nameField]"
+                :type="formatDate.type"
+                :auto-update="formatDate.autoUpdate"
+              />
+              <span
+                v-else-if="fruit.nameField==='MatchName'"
+                style="margin-left: 10px"
+              >{{ scope.row[fruit.nameField] }}</span>
+              <span v-else style="margin-left: 10px">{{ scope.row[fruit.nameField] }}</span>
             </template>
-          </tr>
+          </el-table-column>
         </template>
-        <template v-slot:items="props">
-          <td>
-            {{ props.item.matchName }}
-            <br />
-            <a href="#" style="color: yellow;">прогнозы</a>
-          </td>
-          <td class="text-xs-right">
-            <vueDateFormat
-              :format="formatDate.format"
-              :time="props.item.Odd_date"
-              :type="formatDate.type"
-              :auto-update="formatDate.autoUpdate"
-            />
-          </td>
-          <td class="text-xs-right">{{ props.item.Odd_1 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_x }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_2 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_1x }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_12 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_x2 }}</td>
-        </template>
-      </v-data-table>
+      </el-table>
+      <div class="pagination-container">
+        <el-pagination
+          background
+          :current-page="listQuery.Page"
+          :page-sizes="[5,10,20,30,50,100,200]"
+          :page-size="listQuery.Limit"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="totalDesserts"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
+      </div>
     </v-flex>
   </v-layout>
 </template>
@@ -64,8 +48,6 @@ export default {
   data () {
     return {
       prGetList: false,
-      loading: true,
-      pagination: {},
       totalDesserts: 0,
       desserts: [],
       listQuery: {
@@ -81,25 +63,6 @@ export default {
         type: 'fmt',
         autoUpdate: false
       },
-      headers: [
-        {
-          text: 'Матч',
-          align: 'left',
-          sortable: false,
-          value: 'matchName'
-        },
-        { text: 'Начало игры', value: 'Odd_date' },
-        { text: 'П1', value: 'Odd_1' },
-        { text: 'X', value: 'Odd_x' },
-        { text: 'П2', value: 'Odd_2' },
-        { text: '1X', value: 'Odd_1x' },
-        { text: '12', value: 'Odd_12' },
-        { text: 'X1', value: 'Odd_x2' },
-        { text: 'Ф1 / КФ', value: 'Odd_1' },
-        { text: 'Ф2 / КФ', value: 'Odd_1' },
-        { text: 'ТМ / КФ', value: 'Odd_1' },
-        { text: 'ТБ / КФ', value: 'Odd_1' }
-      ],
       formThead: [
         { nameField: 'id', lngName: 'Id', chkbD: false },
         { nameField: 'matchName', lngName: 'Матч', chkbD: true },
@@ -249,7 +212,6 @@ export default {
       },
       set (newValue) {
         this.$store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
-        this.getList()
       }
     },
     selectedCountry: {
@@ -259,7 +221,6 @@ export default {
       async set (newValue) {
         await this.$store.dispatch('addPrognoz/setSelectedCountry', newValue)
         await this.$store.dispatch('addPrognoz/getValueCompetitions')
-        this.getList()
       }
     }
   },
@@ -270,7 +231,6 @@ export default {
   methods: {
     async getList () {
       this.prGetList = true
-      debugger; //eslint-disable-line
       const { jsonOdds, total } = await this.$axios.$get('/api/MordaOdds', {
         params: this.listQuery
       })
@@ -281,11 +241,12 @@ export default {
         parseData.id = v.Id
         return parseData
       })
-      this.prGetList = false
+
       console.log('deserOdds', deserOdds)
 
       this.desserts = deserOdds
       this.totalDesserts = total
+      this.prGetList = false
     },
     handleSizeChange (val) {
       this.listQuery.Limit = val
@@ -297,7 +258,22 @@ export default {
     },
     handleSetupFields () {
       this.$store.commit('SET_DIALOGVISIBLE', true)
-    }
+    } /*,
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+    } */
   }
 }
 </script>
+<style>
+.el-table,
+.el-table__expanded-cell {
+  background-color: #303030;
+  color: #fff;
+}
+.el-table th,
+.el-table tr {
+  background-color: #303030;
+  color: #fff;
+}
+</style>

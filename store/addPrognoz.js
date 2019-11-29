@@ -5,6 +5,7 @@ export const state = () => ({
   valuePeriod: 'В любое время',
   selectedCountry: '',
   selectedComprtitions: ''
+
 })
 
 export const mutations = {
