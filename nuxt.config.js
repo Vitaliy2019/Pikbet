@@ -1,5 +1,5 @@
 import configEnm from './utils/configEnv'
-
+console.log(configEnm)
 module.exports = {
 
   modules: [

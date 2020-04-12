@@ -13,9 +13,13 @@
           <tr>
             <template v-for="header in props.headers">
               <th
-                v-if="header.text==='Матч'"
+                v-if="header.text === 'Матч'"
                 :key="header.text"
-                :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+                :class="[
+                  'column sortable',
+                  pagination.descending ? 'desc' : 'asc',
+                  header.value === pagination.sortBy ? 'active' : ''
+                ]"
                 @click="changeSort(header.value)"
               >
                 <v-icon small>arrow_upward</v-icon>
@@ -24,7 +28,11 @@
               <th
                 v-else
                 :key="header.text"
-                :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+                :class="[
+                  'column sortable',
+                  pagination.descending ? 'desc' : 'asc',
+                  header.value === pagination.sortBy ? 'active' : ''
+                ]"
                 @click="changeSort(header.value)"
               >
                 <v-icon small>arrow_upward</v-icon>
@@ -35,11 +43,11 @@
         </template>
         <template v-slot:items="props">
           <td>
-            {{ props.item.matchName }}
+            
             <br />
             <a href="#" style="color: yellow;">прогнозы</a>
           </td>
-          <td class="text-xs-right">
+          <td class="text-xs-center">
             <vueDateFormat
               :format="formatDate.format"
               :time="props.item.Odd_date"
@@ -47,22 +55,50 @@
               :auto-update="formatDate.autoUpdate"
             />
           </td>
-          <td class="text-xs-right">{{ props.item.Odd_1 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_x }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_2 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_1x }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_12 }}</td>
-          <td class="text-xs-right">{{ props.item.Odd_x2 }}</td>
+          <td class="text-xs-center">
+          <new-prognoz :odds="props.item" nameOdds="Odd_1"></new-prognoz>
+
+          </td>
+          <td class="text-xs-center">{{ props.item.Odd_x }}</td>
+          <td class="text-xs-center">{{ props.item.Odd_2 }}</td>
+          <td class="text-xs-center">{{ props.item.Odd_1x }}</td>
+          <td class="text-xs-center">{{ props.item.Odd_12 }}</td>
+          <td class="text-xs-center">{{ props.item.Odd_x2 }}</td>
+          <td class="text-xs-center">
+            <span style="color:green">0.5</span> /
+            <span v-if="props.item.Ah_0_5_1">{{ props.item.Ah_0_5_1 }}</span
+            ><span v-else>0</span>
+          </td>
+          <td class="text-xs-center">
+            <span style="color:red">-0.5</span> /
+            <span v-if="props.item.Ah_p0_5_1">{{ props.item.Ah_p0_5_1 }}</span
+            ><span v-else>0</span>
+          </td>
+          <td class="text-xs-center">
+            <span style="color:red">0.5</span> /
+            <span v-if="props.item.O_2_5">{{ props.item.O_2_5 }}</span
+            ><span v-else>0</span>
+          </td>
+          <td class="text-xs-center">
+            <span style="color:red">0.5</span> /
+            <span v-if="props.item.U_2_5">{{ props.item.U_2_5 }}</span
+            ><span v-else>0</span>
+          </td>
         </template>
       </v-data-table>
     </v-flex>
+    
   </v-layout>
 </template>
 <script>
+import NewPrognoz from './newPrognoz'
 export default {
   name: 'list-prognozs',
+  components: { NewPrognoz },
   data () {
     return {
+      odds: null,
+      dialogNewPrognoz: false,
       prGetList: false,
       loading: true,
       pagination: {},
@@ -71,8 +107,8 @@ export default {
       listQuery: {
         Page: 1,
         Limit: 20,
-        Tile: '', // страна
-        ValueC: '', // соревнование
+        Tile: this.selectedCountry, // '', // страна
+        ValueC: this.selectedCompetitions, // '', // соревнование
         ValueM: 0 // период
       },
       formatDate: {
@@ -261,16 +297,42 @@ export default {
         await this.$store.dispatch('addPrognoz/getValueCompetitions')
         this.getList()
       }
+    },
+    slectedPeriod: {
+      get () { return this.$store.getters['addPrognoz/getSelectedPeriod'] },
+      set (newValue) { this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue) }
+    }
+
+  },
+  watch: {
+    selectedCountry () {
+      this.getList()
+    },
+    selectedCompetitions () {
+      this.getList()
+    },
+    slectedPeriod () {
+      this.getList()
     }
   },
   mounted () {
     this.$store.commit('SET_FORMTHEAD', this.formThead)
+    this.selectedCompetitions = null
+    this.selectedCountry = null
     this.getList()
   },
+
   methods: {
+    openNewPrognoz (item, typeKoeff = 'Odd_1') {
+      debugger; // eslint-disable-line
+      this.dialogNewPrognoz = true
+    },
     async getList () {
       this.prGetList = true
       debugger; //eslint-disable-line
+      this.listQuery.Tile = this.selectedCountry
+      this.listQuery.ValueC = this.selectedCompetitions
+      this.listQuery.ValueM = this.slectedPeriod
       const { jsonOdds, total } = await this.$axios.$get('/api/MordaOdds', {
         params: this.listQuery
       })

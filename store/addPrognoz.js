@@ -4,11 +4,14 @@ export const state = () => ({
   valueCountry: '',
   valuePeriod: 'В любое время',
   selectedCountry: '',
-  selectedComprtitions: ''
-
+  selectedComprtitions: '',
+  selectedPeriod: ''
 })
 
 export const mutations = {
+  SET_SELECTED_PERIOD (state, sts) {
+    state.selectedPeriod = sts
+  },
   SET_SELECTED_COMPETITIONS (state, sts) {
     state.selectedComprtitions = sts
   },
@@ -26,6 +29,9 @@ export const mutations = {
   }
 }
 export const actions = {
+  setSelectedPeriod ({ commit }, sts) {
+    commit('SET_SELECTED_PERIOD', sts)
+  },
   setSelectedCompetitions ({
     commit
   }, sts) {
@@ -37,6 +43,7 @@ export const actions = {
   }, sts) {
     commit('SET_SELECT_COUNTRY', sts)
     dispatch('getValueCompetitions')
+    dispatch('')
   },
   setValueCountry ({
     commit
@@ -81,7 +88,7 @@ export const actions = {
       params: listQuery
     })
     commit('SET_VALUE_COMPETITIONS', competitions)
-    commit('SET_SELECTED_COMPETITIONS', competitions[0].league_name)
+    // commit('SET_SELECTED_COMPETITIONS', competitions[0].league_name)
   }
 }
 
@@ -90,5 +97,6 @@ export const getters = {
   getSelectedCountry: state => state.selectedCountry,
   getValueCountry: state => state.valueCountry,
   getValueCompetitions: state => state.valueCompetitions,
-  getPeriod: state => state.valuePeriod
+  getPeriod: state => state.valuePeriod,
+  getSelectedPeriod: state => state.selectedPeriod
 }

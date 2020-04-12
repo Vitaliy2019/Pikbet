@@ -12,6 +12,7 @@
             v-model="selectedCountry"
             label="Страна"
             @change="changeCountry"
+            placeholder="Выберите страну"
           ></v-select>
         </v-flex>
         <v-flex d-flex xs12 sm6 md3>
@@ -22,6 +23,8 @@
             item-text="league_name"
             item-value="league_name"
             label="Соревнование"
+            @change="changeCompetitions"
+            placeholder="Выберите соревнование"
           ></v-select>
         </v-flex>
 
@@ -31,8 +34,10 @@
             :items="itemsPeriod"
             item-text="title"
             item-value="value"
-            v-model="valuePeriod"
+            v-model="selectedPeriod"
             label="Период"
+            placeholder="Выберите период"
+            @change="changePeriod"
           ></v-select>
         </v-flex>
       </v-layout>
@@ -87,6 +92,7 @@ export default {
       },
       set (newValue) {
         this.$store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
+        this.selectedPeriod = null
       }
     },
     selectedCountry: {
@@ -96,7 +102,12 @@ export default {
       async set (newValue) {
         await this.$store.dispatch('addPrognoz/setSelectedCountry', newValue)
         await this.$store.dispatch('addPrognoz/getValueCompetitions')
+        this.selectedPeriod = null
       }
+    },
+    selectedPeriod: {
+      get () { return this.$store.getters['addPrognoz/getSelectedPeriod'] },
+      set (newValue) { this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue) }
     },
     itemsCountry () {
       return this.$store.getters['addPrognoz/getValueCountry']
@@ -109,11 +120,17 @@ export default {
     await store.dispatch('addPrognoz/getValueCountry')
     await store.dispatch('addPrognoz/getValueCompetitions')
   },
+  created () {
+    this.selectedCountry = null
+    this.selectedCompetitions = null
+  },
   methods: {
-    async changeCountry (country) {
-      debugger; // eslint-disable-line
-      await this.$store.dispatch('setSelectedCountry', this.selectedCountry)
-    }
+    async changeCountry () {
+      // debugger; // eslint-disable-line
+      await this.$store.dispatch('addPrognoz/setSelectedCountry', this.selectedCountry)
+    },
+    async changeCompetitions () { await this.$store.dispatch('addPrognoz/setSelectedCompetitions', this.selectedCompetitions) },
+    async changePeriod () { await this.$store.dispatch('addPrognoz/setSelectedPeriod', this.selectedPeriod) }
   }
 }
 </script>

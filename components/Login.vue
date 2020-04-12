@@ -135,6 +135,7 @@ export default {
             password: this.password
           }
         })
+        debugger; // eslint-disable-line
         this.loading = false
         this.$store.commit('viewLogin')
         this.$router.push('/Cabinet/default')
