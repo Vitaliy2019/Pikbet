@@ -56,8 +56,7 @@
             />
           </td>
           <td class="text-xs-center">
-          <new-prognoz :odds="props.item" nameOdds="Odd_1"></new-prognoz>
-
+            <new-prognoz :odds="props.item" nameOdds="Odd_1"></new-prognoz>
           </td>
           <td class="text-xs-center">{{ props.item.Odd_x }}</td>
           <td class="text-xs-center">{{ props.item.Odd_2 }}</td>
