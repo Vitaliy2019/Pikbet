@@ -43,7 +43,7 @@
         </template>
         <template v-slot:items="props">
           <td>
-            
+            <span>{{ props.item.matchName }}</span>
             <br />
             <a href="#" style="color: yellow;">прогнозы</a>
           </td>
@@ -58,29 +58,47 @@
           <td class="text-xs-center">
             <new-prognoz :odds="props.item" nameOdds="Odd_1"></new-prognoz>
           </td>
-          <td class="text-xs-center">{{ props.item.Odd_x }}</td>
-          <td class="text-xs-center">{{ props.item.Odd_2 }}</td>
-          <td class="text-xs-center">{{ props.item.Odd_1x }}</td>
-          <td class="text-xs-center">{{ props.item.Odd_12 }}</td>
-          <td class="text-xs-center">{{ props.item.Odd_x2 }}</td>
+          <td class="text-xs-center">
+            <new-prognoz :odds="props.item" nameOdds="Odd_x"></new-prognoz>
+          </td>
+          <td class="text-xs-center">
+            <new-prognoz :odds="props.item" nameOdds="Odd_2"></new-prognoz>
+          </td>
+          <td class="text-xs-center">
+            <new-prognoz :odds="props.item" nameOdds="Odd_1x"></new-prognoz>
+          </td>
+          <td class="text-xs-center">
+            <new-prognoz :odds="props.item" nameOdds="Odd_12"></new-prognoz>
+          </td>
+          <td class="text-xs-center">
+            <new-prognoz :odds="props.item" nameOdds="Odd_x2"></new-prognoz>
+          </td>
           <td class="text-xs-center">
             <span style="color:green">0.5</span> /
-            <span v-if="props.item.Ah_0_5_1">{{ props.item.Ah_0_5_1 }}</span
+            <span v-if="props.item.Ah_0_5_1">
+              <new-prognoz :odds="props.item" nameOdds="Ah_0_5_1"></new-prognoz>
+            </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">-0.5</span> /
-            <span v-if="props.item.Ah_p0_5_1">{{ props.item.Ah_p0_5_1 }}</span
+            <span v-if="props.item.Ah_p0_5_1">
+              <new-prognoz :odds="props.item" nameOdds="Ah_p0_5_1"></new-prognoz>
+            </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">0.5</span> /
-            <span v-if="props.item.O_2_5">{{ props.item.O_2_5 }}</span
+            <span v-if="props.item.O_0_5">
+              <new-prognoz :odds="props.item" nameOdds="O_0_5"></new-prognoz>
+            </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">0.5</span> /
-            <span v-if="props.item.U_2_5">{{ props.item.U_2_5 }}</span
+            <span v-if="props.item.U_0_5">
+              <new-prognoz :odds="props.item" nameOdds="U_0_5"></new-prognoz>
+            </span
             ><span v-else>0</span>
           </td>
         </template>
