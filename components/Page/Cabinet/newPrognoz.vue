@@ -1,12 +1,12 @@
 <template>
   <div class="text-xs-center">
-    <v-dialog v-model="dialog" width="500" persistent>
+    <v-dialog v-model="dialog" width="550" persistent>
       <template v-slot:activator="{ on }">
         <a v-on="on">
           {{ odds[nameOdds] }}
         </a>
       </template>
-      {{odds}}
+      
       <v-card>
         <v-card-title class="title" primary-title>
           Добавление прогноза
@@ -29,17 +29,17 @@
                 label="Ставка"
                 return-object
                 outline
-
+                color="#fff"
               ></v-select>
             </div>
             <div class="item">
               <span class="title" style="padding-top: 20px;">КФ</span>
-              <v-text-field readonly v-model="selValue.value" style="padding-left:10px; width:50px;"></v-text-field>            
+              <v-text-field color="#fff" readonly v-model="selValue.value" style="padding-left:10px; width:50px;"></v-text-field>            
             </div>      
         </div>
 
         <div>Процент ставки от игрового банка</div>
-        <div>Текущий банк - <img src="/dollar.png" width="10px"> 10 000</div>
+        <div class="otstup">Текущий банк - <img src="/dollar.png" width="10px"> 10 000</div>
         <div class="flex-container">
             <div class="item">
               <v-select style="width:343px"
@@ -48,18 +48,43 @@
                 label="Процент ставки не может превышать 5% от игрового банка."
                 return-object
                 outline
+                color="#fff"
                 @change="chnProcent"
               ></v-select>
             </div>
             <div class="item">
               <span class="title" style="padding-top: 20px;">КФ</span>
-              <v-text-field readonly v-model="summaPoPrtocent" style="padding-left:10px; width:50px;"></v-text-field>            
+              <v-text-field color="#fff" readonly v-model="summaPoPrtocent" style="padding-left:10px; width:50px;"></v-text-field>            
             </div>     
         </div>
-        <span> selValue{{selValue}}</span>        
-        
-        </v-card-text>
+        <p>Прогнозистам, имеющим более 500 прогнозов и ROI не менее 7%, разрешено ставить до 10% от банка.</p>
+        <div>
+          <v-textarea
+            outlined
+            color="#fff"
+            name="input-7-4"
+            label="Комментарий к прогнозу*"
+            v-model="comment"
+          ></v-textarea>
+        </div>
+        <p>* Комментарий пишется по желанию и не является обязательным пунктом.
+          В сутки нельзя делать более 25 прогнозов</p>
 
+        <div class="flex-container">
+            <div class="item">
+              <v-text-field color="#fff" label="Стоимость прогноза (₽)" v-model="cost"></v-text-field>
+            </div>
+        </div>
+        <p>Стоимость прогноза по умолчанию - 150₽
+            Вы можете установить свою стоимость от 75.4₽ до 7542.7₽</p>
+        <div>
+          <v-checkbox
+            v-model="checkbox"
+            label="Опубликовать прогноз бесплатно"
+          ></v-checkbox>
+        </div>
+        </v-card-text>
+         
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -82,6 +107,8 @@ export default {
   props: ['odds', 'nameOdds'],
   data () {
     return {
+      checkbox: false,
+      cost: 150,
       dialog: false,
       itemsOdds: [],
       selValue: {
@@ -97,7 +124,8 @@ export default {
         '4.6%', '4.7%', '4.8%', '4.9%', '5%'
       ],
       valProcent: '2.5%',
-      summaPoPrtocent: 250
+      summaPoPrtocent: 250,
+      comment: ''
     }
   },
   created () {
@@ -332,7 +360,6 @@ export default {
   },
   methods: {
     chnProcent () {
-      debugger // eslint-disable-line
       const proc = parseFloat(this.valProcent.substring(0, this.valProcent.indexOf('%')))
       this.summaPoPrtocent = 10000 * proc / 100
     }
@@ -350,8 +377,13 @@ export default {
 
   .item {
     display: flex;
-    /* align-items: center;*/
     margin-left: 10px;   
+  }
+  .item:nth-last-child(1){
+    margin-right: 20px;
+  }
+  .otstup{
+    padding-bottom: 10px;
   }
   
 </style>
