@@ -2,13 +2,14 @@
   <v-container>
     <v-layout align-center justify-center>
       <v-flex xs6>
+      <v-form ref="form" @keyup.native.enter="onSubmit" v-model="valid" lazy-validation @submit="onSubmit" action="#" method="post">
         <v-card class="elevation-12">
           <v-toolbar dark color="yellow">
             <v-toolbar-title>Введите данные для входа в личный кабинет</v-toolbar-title>
             <v-spacer />
           </v-toolbar>
           <v-card-text>
-            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
+            
               <v-text-field
                 color="yellow"
                 v-model="email"
@@ -41,11 +42,11 @@
                 @verify="onVerify"
                 @expired="onExpired"
               />
-            </v-form>
+           
           </v-card-text>
           <v-card-actions>
             <v-tooltip bottom>
-              <v-btn slot="activator" :loading="loading" color="success" @click="onSubmit">Войти</v-btn>
+              <v-btn slot="activator" :loading="loading" type="submit" color="success" @click="onSubmit">Войти</v-btn>
               <span>Вход в личный кабинет</span>
             </v-tooltip>
             <v-tooltip bottom>
@@ -60,6 +61,7 @@
             </v-tooltip>
           </v-card-actions>
         </v-card>
+      </v-form>
       </v-flex>
     </v-layout>
   </v-container>
