@@ -1,37 +1,48 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <el-table ref="multipleTable" v-loading="prGetList" :data="desserts" style="width: 100%">
-        <template v-for="(fruit, index) in LangFormThead">
-          <el-table-column
-            v-if="fruit.chkbD"
-            :key="'data-'+index"
-            sortable
-            :label="fruit.lngName"
-            :property="fruit.nameField"
-          >
-            <template slot-scope="scope">
-              <vueDateFormat
-                v-if="fruit.nameField==='Odd_date'"
-                :format="formatDate.format"
-                :time="scope.row[fruit.nameField]"
-                :type="formatDate.type"
-                :auto-update="formatDate.autoUpdate"
-              />
-              <span
-                v-else-if="fruit.nameField==='MatchName'"
-                style="margin-left: 10px"
-              >{{ scope.row[fruit.nameField] }}</span>
-              <span v-else style="margin-left: 10px">{{ scope.row[fruit.nameField] }}</span>
-            </template>
-          </el-table-column>
-        </template>
-      </el-table>
+      <div class="wrapper__table">
+        <el-table
+          ref="multipleTable"
+          v-loading="prGetList"
+          :data="desserts"
+          style="width: 100%"
+        >
+          <template v-for="(fruit, index) in LangFormThead">
+            <el-table-column
+              v-if="fruit.chkbD"
+              :key="'data-' + index"
+              sortable
+              :label="fruit.lngName"
+              :property="fruit.nameField"
+              :class="{ 'name-width': fruit.nameField === 'matchName' }"
+            >
+              <template slot-scope="scope">
+                <vueDateFormat
+                  v-if="fruit.nameField === 'Odd_date'"
+                  :format="formatDate.format"
+                  :time="scope.row[fruit.nameField]"
+                  :type="formatDate.type"
+                  :auto-update="formatDate.autoUpdate"
+                />
+                <span
+                  v-else-if="fruit.nameField === 'MatchName'"
+                  style="margin-left: 10px;"
+                  >{{ scope.row[fruit.nameField] }}</span
+                >
+                <span v-else style="margin-left: 10px;">{{
+                  scope.row[fruit.nameField]
+                }}</span>
+              </template>
+            </el-table-column>
+          </template>
+        </el-table>
+      </div>
       <div class="pagination-container">
         <el-pagination
           background
           :current-page="listQuery.Page"
-          :page-sizes="[5,10,20,30,50,100,200]"
+          :page-sizes="[5, 10, 20, 30, 50, 100, 200]"
           :page-size="listQuery.Limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="totalDesserts"
@@ -231,22 +242,26 @@ export default {
   methods: {
     async getList () {
       this.prGetList = true
+
+      this.listQuery.Tile = this.selectedCountry
+      this.listQuery.ValueC = this.selectedCompetitions
+      this.listQuery.ValueM = this.slectedPeriod
+
       const { jsonOdds, total } = await this.$axios.$get('/api/MordaOdds', {
         params: this.listQuery
       })
-
-      let deserOdds = jsonOdds.map(v => {
+      debugger; // eslint-disable-line
+      let deserOdds = jsonOdds.map((v) => {
         let parseData = JSON.parse(v.Data)
         parseData.matchName = v.MatchName
         parseData.id = v.Id
         return parseData
       })
-
+      this.prGetList = false
       console.log('deserOdds', deserOdds)
 
       this.desserts = deserOdds
       this.totalDesserts = total
-      this.prGetList = false
     },
     handleSizeChange (val) {
       this.listQuery.Limit = val
@@ -265,15 +280,46 @@ export default {
   }
 }
 </script>
-<style>
-.el-table,
-.el-table__expanded-cell {
-  background-color: #303030;
-  color: #fff;
-}
-.el-table th,
-.el-table tr {
-  background-color: #303030;
-  color: #fff;
+<style lang="scss">
+.wrapper__table {
+  .name-width {
+    width: 200px;
+  }
+
+  .el-table,
+  .el-table__expanded-cell {
+    background-color: #303030;
+    color: #fff;
+  }
+  .el-table th,
+  .el-table tr {
+    background-color: #303030;
+    color: #fff;
+  }
+
+  .el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .el-table--enable-row-hover
+    .el-table__body
+    tr.el-table__row--striped:hover
+    > td {
+    background-color: #000;
+    color: #fff;
+  }
+  .el-table--enable-row-hover
+    .el-table__body
+    tr.el-table__row--striped:hover
+    > td {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .el-table__body tr.current-row > td {
+    background-color: #000;
+    color: #fff;
+  }
 }
 </style>

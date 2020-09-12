@@ -47,7 +47,7 @@
 </template>
 <script>
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
-import ListPrognoz from '~/components/Page/Cabinet/listPrognoz'
+import ListPrognoz from '~/components/Page/Cabinet/listPrognozElUI'
 export default {
   middleware: ['auth'],
   components: { BreadCrumbs, ListPrognoz },
@@ -106,8 +106,12 @@ export default {
       }
     },
     selectedPeriod: {
-      get () { return this.$store.getters['addPrognoz/getSelectedPeriod'] },
-      set (newValue) { this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue) }
+      get () {
+        return this.$store.getters['addPrognoz/getSelectedPeriod']
+      },
+      set (newValue) {
+        this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue)
+      }
     },
     itemsCountry () {
       return this.$store.getters['addPrognoz/getValueCountry']
@@ -127,10 +131,23 @@ export default {
   methods: {
     async changeCountry () {
       // debugger; // eslint-disable-line
-      await this.$store.dispatch('addPrognoz/setSelectedCountry', this.selectedCountry)
+      await this.$store.dispatch(
+        'addPrognoz/setSelectedCountry',
+        this.selectedCountry
+      )
     },
-    async changeCompetitions () { await this.$store.dispatch('addPrognoz/setSelectedCompetitions', this.selectedCompetitions) },
-    async changePeriod () { await this.$store.dispatch('addPrognoz/setSelectedPeriod', this.selectedPeriod) }
+    async changeCompetitions () {
+      await this.$store.dispatch(
+        'addPrognoz/setSelectedCompetitions',
+        this.selectedCompetitions
+      )
+    },
+    async changePeriod () {
+      await this.$store.dispatch(
+        'addPrognoz/setSelectedPeriod',
+        this.selectedPeriod
+      )
+    }
   }
 }
 </script>

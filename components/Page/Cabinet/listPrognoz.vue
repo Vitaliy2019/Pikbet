@@ -4,8 +4,8 @@
       <v-data-table
         :headers="headers"
         :items="desserts"
+        hide-actions
         :pagination.sync="pagination"
-        :total-items="totalDesserts"
         :loading="prGetList"
         class="elevation-1"
       >
@@ -18,7 +18,7 @@
                 :class="[
                   'column sortable',
                   pagination.descending ? 'desc' : 'asc',
-                  header.value === pagination.sortBy ? 'active' : ''
+                  header.value === pagination.sortBy ? 'active' : '',
                 ]"
                 @click="changeSort(header.value)"
               >
@@ -31,7 +31,7 @@
                 :class="[
                   'column sortable',
                   pagination.descending ? 'desc' : 'asc',
-                  header.value === pagination.sortBy ? 'active' : ''
+                  header.value === pagination.sortBy ? 'active' : '',
                 ]"
                 @click="changeSort(header.value)"
               >
@@ -76,35 +76,45 @@
           <td class="text-xs-center">
             <span style="color:green">0.5</span> /
             <span v-if="props.item.Ah_0_5_1">
-              <new-prognoz :odds="props.item" nameOdds="Ah_0_5_1"></new-prognoz>
-            </span
+              <new-prognoz
+                :odds="props.item"
+                nameOdds="Ah_0_5_1"
+              ></new-prognoz> </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">-0.5</span> /
             <span v-if="props.item.Ah_p0_5_1">
-              <new-prognoz :odds="props.item" nameOdds="Ah_p0_5_1"></new-prognoz>
-            </span
+              <new-prognoz
+                :odds="props.item"
+                nameOdds="Ah_p0_5_1"
+              ></new-prognoz> </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">0.5</span> /
             <span v-if="props.item.O_0_5">
-              <new-prognoz :odds="props.item" nameOdds="O_0_5"></new-prognoz>
-            </span
+              <new-prognoz
+                :odds="props.item"
+                nameOdds="O_0_5"
+              ></new-prognoz> </span
             ><span v-else>0</span>
           </td>
           <td class="text-xs-center">
             <span style="color:red">0.5</span> /
             <span v-if="props.item.U_0_5">
-              <new-prognoz :odds="props.item" nameOdds="U_0_5"></new-prognoz>
-            </span
+              <new-prognoz
+                :odds="props.item"
+                nameOdds="U_0_5"
+              ></new-prognoz> </span
             ><span v-else>0</span>
           </td>
         </template>
       </v-data-table>
+      <div class="text-xs-center pt-2">
+        <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+      </div>
     </v-flex>
-    
   </v-layout>
 </template>
 <script>
@@ -316,10 +326,13 @@ export default {
       }
     },
     slectedPeriod: {
-      get () { return this.$store.getters['addPrognoz/getSelectedPeriod'] },
-      set (newValue) { this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue) }
+      get () {
+        return this.$store.getters['addPrognoz/getSelectedPeriod']
+      },
+      set (newValue) {
+        this.$store.dispatch('addPrognoz/setSelectedPeriod', newValue)
+      }
     }
-
   },
   watch: {
     selectedCountry () {
@@ -340,6 +353,14 @@ export default {
   },
 
   methods: {
+    changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
+    },
     openNewPrognoz (item, typeKoeff = 'Odd_1') {
       debugger; // eslint-disable-line
       this.dialogNewPrognoz = true
@@ -354,7 +375,7 @@ export default {
         params: this.listQuery
       })
 
-      let deserOdds = jsonOdds.map(v => {
+      let deserOdds = jsonOdds.map((v) => {
         let parseData = JSON.parse(v.Data)
         parseData.matchName = v.MatchName
         parseData.id = v.Id
