@@ -18,7 +18,7 @@
     "@nuxtjs/auth": "^4.5.3",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/vuetify": "^1.6.3",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "element-ui": "2.11.1",
     "nuxt": "^2.9.2",
     "vue-date-format": "^1.1.2",
