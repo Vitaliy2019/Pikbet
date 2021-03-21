@@ -1,5 +1,5 @@
-// import axios from '@nuxtjs/axios'
 export const state = () => ({
+  namespace: true,
   valueCompetitions: '',
   valueCountry: '',
   valuePeriod: 'В любое время',
@@ -32,49 +32,33 @@ export const actions = {
   setSelectedPeriod ({ commit }, sts) {
     commit('SET_SELECTED_PERIOD', sts)
   },
-  setSelectedCompetitions ({
-    commit
-  }, sts) {
+  setSelectedCompetitions ({ commit }, sts) {
     commit('SET_SELECTED_COMPETITIONS', sts)
   },
-  setSelectedCountry ({
-    commit,
-    dispatch
-  }, sts) {
+  setSelectedCountry ({ commit, dispatch }, sts) {
     commit('SET_SELECT_COUNTRY', sts)
     dispatch('getValueCompetitions')
     dispatch('')
   },
-  setValueCountry ({
-    commit
-  }, sts) {
+  setValueCountry ({ commit }, sts) {
     commit('SET_VALUE_COUNTRY', sts)
   },
-  setValueCompetitions ({
-    commit
-  }, sts) {
+  setValueCompetitions ({ commit }, sts) {
     commit('SET_VALUE_COMPETITIONS', sts)
   },
-  setValuePeriod ({
-    commit
-  }, sts) {
+  setValuePeriod ({ commit }, sts) {
     commit('SET_VALUE_PERIOD', sts)
   },
-  async getValueCountry ({
-    commit
-  }) {
-    const {
-      countries
-    } = await this.$axios.$get('/api/Countries/getListAllVisible')
+  async getValueCountry ({ commit }) {
+    const { countries } = await this.$axios.$get(
+      '/api/Countries/getListAllVisible'
+    )
 
     commit('SET_VALUE_COUNTRY', countries)
 
     commit('SET_SELECT_COUNTRY', countries[0].country_name)
   },
-  async getValueCompetitions ({
-    commit,
-    state
-  }) {
+  async getValueCompetitions ({ commit, state }) {
     debugger; // eslint-disable-line
     const listQuery = {
       Page: 1,
@@ -82,9 +66,7 @@ export const actions = {
       Tile: state.selectedCountry || '',
       ValueC: ''
     }
-    const {
-      competitions
-    } = await this.$axios.$get('/api/Competitions/', {
+    const { competitions } = await this.$axios.$get('/api/Competitions/', {
       params: listQuery
     })
     commit('SET_VALUE_COMPETITIONS', competitions)
@@ -93,10 +75,10 @@ export const actions = {
 }
 
 export const getters = {
-  getSelectedCompetitions: state => state.selectedComprtitions,
-  getSelectedCountry: state => state.selectedCountry,
-  getValueCountry: state => state.valueCountry,
-  getValueCompetitions: state => state.valueCompetitions,
-  getPeriod: state => state.valuePeriod,
-  getSelectedPeriod: state => state.selectedPeriod
+  getSelectedCompetitions: (state) => state.selectedComprtitions,
+  getSelectedCountry: (state) => state.selectedCountry,
+  getValueCountry: (state) => state.valueCountry,
+  getValueCompetitions: (state) => state.valueCompetitions,
+  getPeriod: (state) => state.valuePeriod,
+  getSelectedPeriod: (state) => state.selectedPeriod
 }

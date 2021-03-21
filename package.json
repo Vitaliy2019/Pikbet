@@ -12,17 +12,23 @@
     "now-build": "nuxt build --spa"
   },
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^25.1.0",
+    "@ag-grid-community/csv-export": "^25.1.0",
+    "@ag-grid-community/infinite-row-model": "^25.1.0",
     "@aspnet/signalr": "^1.1.4",
     "@finpo/vue2-recaptcha-invisible": "^1.1.5",
     "@mdi/font": "^2.4.85",
     "@nuxtjs/auth": "^4.5.3",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/vuetify": "^1.6.3",
+    "ag-grid-community": "^25.1.0",
+    "ag-grid-vue": "^25.1.0",
     "axios": "0.19.0",
     "element-ui": "2.11.1",
     "nuxt": "^2.9.2",
     "vue-date-format": "^1.1.2",
     "vue-i18n": "^8.11.2",
+    "vue-property-decorator": "^8.0.0",
     "vue-recaptcha": "^1.1.0",
     "vuelidate": "^0.7.4",
     "vuetify": "1.5.18"
