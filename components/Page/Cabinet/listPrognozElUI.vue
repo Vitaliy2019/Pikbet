@@ -37,18 +37,19 @@
             </el-table-column>
           </template>
         </el-table>
-      </div>
-      <div class="pagination-container">
-        <el-pagination
-          background
-          :current-page="listQuery.Page"
-          :page-sizes="[5, 10, 20, 30, 50, 100, 200]"
-          :page-size="listQuery.Limit"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="totalDesserts"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+
+        <div class="pagination-container">
+          <el-pagination
+            background
+            :current-page="listQuery.Page"
+            :page-sizes="[5, 10, 20, 30, 50, 100, 200]"
+            :page-size="listQuery.Limit"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="totalDesserts"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+        </div>
       </div>
     </v-flex>
   </v-layout>
@@ -300,6 +301,7 @@ export default {
   .el-table--enable-row-hover .el-table__body tr:hover > td {
     background-color: #000;
     color: #fff;
+    cursor: pointer;
   }
 
   .el-table--enable-row-hover
@@ -321,5 +323,23 @@ export default {
     background-color: #000;
     color: #fff;
   }
+
+  .el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+.el-select-dropdown__item.selected {
+  color: #000;
+  font-weight: 700;
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #000;
+}
+
+.el-select .el-input__inner:focus {
+  border-color: #000;
 }
 </style>
