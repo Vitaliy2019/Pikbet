@@ -26,13 +26,19 @@
                   :auto-update="formatDate.autoUpdate"
                 />
                 <span
-                  v-else-if="fruit.nameField === 'MatchName'"
+                  v-else-if="fruit.nameField === 'matchName'"
                   style="margin-left: 10px;"
-                  >{{ scope.row[fruit.nameField] }}</span
-                >
-                <span v-else style="margin-left: 10px;">{{
-                  scope.row[fruit.nameField]
-                }}</span>
+                  >{{ scope.row[fruit.nameField] }}
+                  <br />
+                  <a href="#" style="color: yellow;">прогнозы</a>
+                </span>
+                <span v-else style="margin-left: 10px;"
+                  >{{ scope.row[fruit.nameField] }}
+                  <new-prognoz
+                    :odds="scope.row"
+                    :nameOdds="fruit.nameField"
+                  ></new-prognoz
+                ></span>
               </template>
             </el-table-column>
           </template>
@@ -55,8 +61,11 @@
   </v-layout>
 </template>
 <script>
+import NewPrognoz from './newPrognoz'
+
 export default {
   name: 'list-prognozs',
+  components: { NewPrognoz },
   data () {
     return {
       prGetList: false,
@@ -251,7 +260,7 @@ export default {
       const { jsonOdds, total } = await this.$axios.$get('/api/MordaOdds', {
         params: this.listQuery
       })
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
       let deserOdds = jsonOdds.map((v) => {
         let parseData = JSON.parse(v.Data)
         parseData.matchName = v.MatchName

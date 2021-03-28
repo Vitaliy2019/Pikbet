@@ -59,7 +59,7 @@ export const actions = {
     commit('SET_SELECT_COUNTRY', countries[0].country_name)
   },
   async getValueCompetitions ({ commit, state }) {
-    debugger; // eslint-disable-line
+    // debugger; // eslint-disable-line
     const listQuery = {
       Page: 1,
       Limit: 1000,

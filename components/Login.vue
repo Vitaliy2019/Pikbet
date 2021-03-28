@@ -3,11 +3,18 @@
     <v-flex xs12>
       <v-card class="elevation-12">
         <v-toolbar dark color="yellow">
-          <v-toolbar-title>Введите данные для входа в личный кабинет</v-toolbar-title>
+          <v-toolbar-title
+            >Введите данные для входа в личный кабинет</v-toolbar-title
+          >
           <v-spacer />
         </v-toolbar>
         <v-card-text>
-          <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
+          <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+            @submit.prevent="onSubmit"
+          >
             <v-text-field
               color="yellow"
               v-model="email"
@@ -44,7 +51,13 @@
         </v-card-text>
         <v-card-actions>
           <v-tooltip bottom>
-            <v-btn slot="activator" :loading="loading" color="success" @click="onSubmit">Войти</v-btn>
+            <v-btn
+              slot="activator"
+              :loading="loading"
+              color="success"
+              @click="onSubmit"
+              >Войти</v-btn
+            >
             <span>Вход в личный кабинет</span>
           </v-tooltip>
           <v-tooltip bottom>
@@ -54,7 +67,8 @@
               color="yellow"
               to="/registration"
               @click="Registration"
-            >Регистрация</v-btn>
+              >Регистрация</v-btn
+            >
             <span>Регистрация для входа в личный кабинет</span>
           </v-tooltip>
         </v-card-actions>
@@ -117,7 +131,7 @@ export default {
       this.$router.push('/registration')
     },
     onSubmit: function () {
-      // debugger; // eslint-disable-line
+      // // debugger; // eslint-disable-line
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.$refs.invisibleRecaptcha.execute()
@@ -127,7 +141,7 @@ export default {
     },
     onVerify: async function (response) {
       try {
-        debugger; // eslint-disable-line
+        // // debugger; // eslint-disable-line
         this.loading = true
         await this.$auth.loginWith('local', {
           data: {
@@ -135,7 +149,7 @@ export default {
             password: this.password
           }
         })
-        debugger; // eslint-disable-line
+        // // debugger; // eslint-disable-line
         this.loading = false
         this.$store.commit('viewLogin')
         this.$router.push('/Cabinet/default')
@@ -161,4 +175,3 @@ export default {
   }
 }
 </script>
-

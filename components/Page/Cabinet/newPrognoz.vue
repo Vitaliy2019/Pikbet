@@ -194,6 +194,7 @@ export default {
     }
   },
   created () {
+    debugger
     console.log('this.odds ---------> ', this.odds)
     this.idOdds = this.odds.id
     this.NameCommands = this.odds.matchName

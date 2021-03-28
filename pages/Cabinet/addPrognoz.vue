@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     async changeCountry () {
-      // debugger; // eslint-disable-line
+      // // debugger; // eslint-disable-line
       await this.$store.dispatch(
         'addPrognoz/setSelectedCountry',
         this.selectedCountry
