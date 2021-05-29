@@ -42,17 +42,30 @@
         </v-flex>
       </v-layout>
     </v-layout>
-    <list-prognoz></list-prognoz>
+    <list-prognoz
+      @newPrognoz="newPrognoz"
+      :selectedCountry="selectedCountry"
+      :selectedCompetitions="selectedCompetitions"
+    ></list-prognoz>
+    <new-prognoz
+      v-if="visiblePrognoz"
+      :visiblePrognoz="visiblePrognoz"
+      :valueOdds="valueOdds"
+    ></new-prognoz>
   </v-container>
 </template>
 <script>
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 import ListPrognoz from '~/components/Page/Cabinet/listPrognozElUI'
+import NewPrognoz from '~/components/Page/Cabinet/newPrognoz'
+
 export default {
   middleware: ['auth'],
-  components: { BreadCrumbs, ListPrognoz },
+  components: { BreadCrumbs, ListPrognoz, NewPrognoz },
   data () {
     return {
+      valueOdds: null,
+      visiblePrognoz: false,
       valuePeriod: '0',
       formatDate: {
         format: 'dd.MM.yyyy hh:mm',
@@ -129,6 +142,14 @@ export default {
     this.selectedCompetitions = null
   },
   methods: {
+    newPrognoz (val) {
+      debugger
+      this.valueOdds = {
+        odds: val.odds,
+        nameOdds: val.nameOdds
+      }
+      this.visiblePrognoz = true
+    },
     async changeCountry () {
       // // debugger; // eslint-disable-line
       await this.$store.dispatch(

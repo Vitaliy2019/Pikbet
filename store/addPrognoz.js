@@ -1,5 +1,4 @@
 export const state = () => ({
-  namespace: true,
   valueCompetitions: '',
   valueCountry: '',
   valuePeriod: 'В любое время',
@@ -70,7 +69,6 @@ export const actions = {
       params: listQuery
     })
     commit('SET_VALUE_COMPETITIONS', competitions)
-    // commit('SET_SELECTED_COMPETITIONS', competitions[0].league_name)
   }
 }
 

@@ -30,15 +30,18 @@
                   style="margin-left: 10px;"
                   >{{ scope.row[fruit.nameField] }}
                   <br />
-                  <a href="#" style="color: yellow;">прогнозы</a>
+                  <a
+                    href="#"
+                    style="color: yellow;"
+                    @click="newPrognoz(scope.row, fruit.nameField)"
+                    >прогнозы</a
+                  >
                 </span>
                 <span v-else style="margin-left: 10px;"
                   >{{ scope.row[fruit.nameField] }}
-                  <new-prognoz
-                    :odds="scope.row"
-                    :nameOdds="fruit.nameField"
-                  ></new-prognoz
-                ></span>
+
+                  ></span
+                >
               </template>
             </el-table-column>
           </template>
@@ -61,11 +64,18 @@
   </v-layout>
 </template>
 <script>
-import NewPrognoz from './newPrognoz'
-
 export default {
   name: 'list-prognozs',
-  components: { NewPrognoz },
+  props: {
+    selectedCountry: {
+      type: String,
+      default: ''
+    },
+    selectedCompetitions: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       prGetList: false,
@@ -226,23 +236,6 @@ export default {
   computed: {
     LangFormThead: function () {
       return this.$store.state.formThead
-    },
-    selectedCompetitions: {
-      get () {
-        return this.$store.getters['addPrognoz/getSelectedCompetitions']
-      },
-      set (newValue) {
-        this.$store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
-      }
-    },
-    selectedCountry: {
-      get () {
-        return this.$store.getters['addPrognoz/getSelectedCountry']
-      },
-      async set (newValue) {
-        await this.$store.dispatch('addPrognoz/setSelectedCountry', newValue)
-        await this.$store.dispatch('addPrognoz/getValueCompetitions')
-      }
     }
   },
   mounted () {
@@ -250,6 +243,15 @@ export default {
     this.getList()
   },
   methods: {
+    newPrognoz (row, nameField) {
+      debugger
+      const oddsValue = {
+        odds: row,
+        nameOdds: row[nameField]
+      }
+      debugger
+      this.$emit('newPrognoz', oddsValue)
+    },
     async getList () {
       this.prGetList = true
 
