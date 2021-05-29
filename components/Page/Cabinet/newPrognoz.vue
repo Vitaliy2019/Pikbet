@@ -817,7 +817,8 @@ export default {
         SelValueName: this.selValue.name,
         SelValueValue: this.selValue.value,
         SelValueType: this.selValue.type,
-        NameCommands: this.nameCommands
+        NameCommands: this.nameCommands,
+        SummaPoPrtocent: this.summaPoPrtocent
       }
       const res = await this.$axios.$post('/api/PrognozKapers', prognozDto)
       console.log(res)
