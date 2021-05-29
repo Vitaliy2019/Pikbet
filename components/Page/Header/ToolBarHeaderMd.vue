@@ -42,9 +42,7 @@
 
     <v-dialog v-model="dialog" width="500" v-if="!isAuthenticated">
       <template v-slot:activator="{ on }">
-        <v-btn @click="dialog=true">
-          <v-icon>account_box</v-icon>вход
-        </v-btn>
+        <v-btn @click="dialog = true"> <v-icon>account_box</v-icon>вход </v-btn>
       </template>
       <login-in></login-in>
     </v-dialog>
@@ -66,7 +64,7 @@
       </v-btn>
       <v-list class="pa-0">
         <v-list-tile
-          v-for="(item,index) in items"
+          v-for="(item, index) in items"
           :to="!item.href ? { name: item.name } : null"
           :href="item.href"
           @click="item.click"
@@ -102,7 +100,7 @@ export default {
           icon: 'account_balance',
           href: '#',
           title: 'Банк',
-          click: e => {
+          click: (e) => {
             this.$router.push('/Cabinet/balance')
           }
         },
@@ -110,7 +108,7 @@ export default {
           icon: 'account_circle',
           href: '#',
           title: 'Профиль',
-          click: e => {
+          click: (e) => {
             this.$router.push('/Cabinet/profile')
           }
         },
@@ -118,7 +116,7 @@ export default {
           icon: 'star_border',
           href: '#',
           title: 'Мои прогнозы',
-          click: e => {
+          click: (e) => {
             this.$router.push('/Cabinet/default')
           }
         },
@@ -149,7 +147,7 @@ export default {
     if (this.isAuthenticated) {
       this.$store.dispatch('kaper/initKaper', this.$auth.user.Id)
     }
-    // debugger; // eslint-disable-line
+    // // debugger; // eslint-disable-line
     // console.log(this.isAuthenticated);
   },
   methods: {

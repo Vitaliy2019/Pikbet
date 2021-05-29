@@ -22,14 +22,18 @@
               >
                 <template v-slot:activator>
                   <v-tooltip bottom>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                       <v-btn v-on="on" v-model="fab">Изменить аватар</v-btn>
                     </template>
                     <span>Выберите аватар</span>
                   </v-tooltip>
                 </template>
                 <template v-for="(item, index) in selectAvatars">
-                  <pan-thumb :image="item.Avatar" :key="index" @click="clickAvatar" />
+                  <pan-thumb
+                    :image="item.Avatar"
+                    :key="index"
+                    @click="clickAvatar"
+                  />
                 </template>
               </v-speed-dial>
             </div>
@@ -39,7 +43,7 @@
             <v-list>
               <v-list-tile>
                 <v-list-tile-title class="text-xs-center">
-                  <span>Логин: {{kaper.Login}}</span>
+                  <span>Логин: {{ kaper.Login }}</span>
                 </v-list-tile-title>
               </v-list-tile>
             </v-list>
@@ -57,13 +61,35 @@
               <v-layout wrap class="mx-1">
                 <v-flex xs12 sm12 md6>
                   <v-card class="px-2">
-                    <v-text-field v-model="kaper.City" label="Город"></v-text-field>
-                    <v-select v-model="kaper.Pol" :items="itemsP" label="Выберите пол"></v-select>
-                    <v-text-field v-model="kaper.Family" label="Фамилия"></v-text-field>
-                    <v-text-field v-model="kaper.Fnme" label="Имя"></v-text-field>
-                    <v-text-field v-model="kaper.Email" label="E-mail"></v-text-field>
-                    <v-text-field v-model="kaper.Tel" label="Телефон"></v-text-field>
-                    <v-text-field v-model="kaper.N_yandex_dengi" label="Яндекс.Деньги"></v-text-field>
+                    <v-text-field
+                      v-model="kaper.City"
+                      label="Город"
+                    ></v-text-field>
+                    <v-select
+                      v-model="kaper.Pol"
+                      :items="itemsP"
+                      label="Выберите пол"
+                    ></v-select>
+                    <v-text-field
+                      v-model="kaper.Family"
+                      label="Фамилия"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="kaper.Fnme"
+                      label="Имя"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="kaper.Email"
+                      label="E-mail"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="kaper.Tel"
+                      label="Телефон"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="kaper.N_yandex_dengi"
+                      label="Яндекс.Деньги"
+                    ></v-text-field>
                   </v-card>
                 </v-flex>
                 <v-flex xs12 sm12 md6>
@@ -72,7 +98,7 @@
                       <label class="pr-2">Счет</label>
                       <v-chip>
                         <v-avatar class="yellow darken-2">₽</v-avatar>
-                        {{this.$options.filters.nFormatter(kaper.Score)}}
+                        {{ this.$options.filters.nFormatter(kaper.Score) }}
                       </v-chip>
                     </div>
                     <div class="pt-3">
@@ -86,39 +112,57 @@
                       ></v-rating>
                     </div>
                     <div class="pt-3">
-                      <v-chip>{{this.$options.filters.nFormatter(kaper.Count_stavok)}}</v-chip>
+                      <v-chip>{{
+                        this.$options.filters.nFormatter(kaper.Count_stavok)
+                      }}</v-chip>
                       <label>Остаток</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip>{{this.$options.filters.nFormatter(kaper.Dodhod)}}</v-chip>
+                      <v-chip>{{
+                        this.$options.filters.nFormatter(kaper.Dodhod)
+                      }}</v-chip>
                       <label>Доход</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Prohod)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Prohod)
+                      }}</v-chip>
                       <label>Проход</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Sr_koeff)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Sr_koeff)
+                      }}</v-chip>
                       <label>Ср. коэфф</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Roi)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Roi)
+                      }}</v-chip>
                       <label>ROI</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Roi)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Roi)
+                      }}</v-chip>
                       <label>ROI</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Vyigreshey)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Vyigreshey)
+                      }}</v-chip>
                       <label>Выигрыш</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Vozvratov)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Vozvratov)
+                      }}</v-chip>
                       <label>Возвраты</label>
                     </div>
                     <div class="pt-3">
-                      <v-chip align-end>{{this.$options.filters.nFormatter(kaper.Proigreshey)}}</v-chip>
+                      <v-chip align-end>{{
+                        this.$options.filters.nFormatter(kaper.Proigreshey)
+                      }}</v-chip>
                       <label>Проигрыш</label>
                     </div>
                   </v-card>
@@ -132,7 +176,7 @@
     <change-password></change-password>
   </v-container>
 </template>
-    
+
 <script>
 import BreadCrumbs from '~/components/Page/Header/BreadCrumbs'
 import PanThumb from '~/components/PanThumbNoTransition'
@@ -183,7 +227,7 @@ export default {
         return this.$store.getters['kaper/getDilogPassword']
       },
       set (newValue) {
-        debugger; //eslint-disable-line
+        // debugger; //eslint-disable-line
         this.$store.dispatch('kaper/setDialogPassword', newValue)
       }
     },

@@ -132,9 +132,25 @@
 <script>
 export default {
   name: 'new-prognoz',
-  props: ['odds', 'nameOdds'],
+  props: {
+    valueOdds: {
+      type: Object,
+      default: function () {
+        return {
+          odds: null,
+          nameOdds: null
+        }
+      }
+    },
+    visiblePrognoz: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
+      nameOdds: '',
+      odds: null,
       checkbox: false,
       cost: 150,
       dialog: false,
@@ -194,7 +210,12 @@ export default {
     }
   },
   created () {
+    debugger
     console.log('this.odds ---------> ', this.odds)
+    this.odds = this.valueOdds.odds
+    this.nameOdds = this.valueOdds.nameOdds
+    // ----------------------------------------
+
     this.idOdds = this.odds.id
     this.NameCommands = this.odds.matchName
     const arrNameCommands = this.odds.matchName.split('-')
@@ -742,6 +763,8 @@ export default {
     console.log('itemsOdds =====', this.itemsOdds)
   },
   mounted () {
+    this.dialog = this.visiblePrognoz
+
     switch (this.nameOdds) {
       case 'Odd_1': // if (x === 'value1')
         this.selValue = this.itemsOdds[0]
@@ -785,7 +808,7 @@ export default {
       )
       this.summaPoPrtocent = (10000 * proc) / 100
     },
-    addPrognoz () {
+    async addPrognoz () {
       this.dialog = false
       const prognozDto = {
         IdOdds: this.idOdds,
@@ -794,9 +817,10 @@ export default {
         SelValueName: this.selValue.name,
         SelValueValue: this.selValue.value,
         SelValueType: this.selValue.type,
-        NameCommands: this.nameCommands
+        NameCommands: this.nameCommands,
+        SummaPoPrtocent: this.summaPoPrtocent
       }
-      const res = this.$axios.$post('/api/PrognozKapers', prognozDto)
+      const res = await this.$axios.$post('/api/PrognozKapers', prognozDto)
       console.log(res)
     }
   }

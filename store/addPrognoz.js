@@ -1,5 +1,4 @@
 export const state = () => ({
-  namespace: true,
   valueCompetitions: '',
   valueCountry: '',
   valuePeriod: 'В любое время',
@@ -59,7 +58,7 @@ export const actions = {
     commit('SET_SELECT_COUNTRY', countries[0].country_name)
   },
   async getValueCompetitions ({ commit, state }) {
-    debugger; // eslint-disable-line
+    // debugger; // eslint-disable-line
     const listQuery = {
       Page: 1,
       Limit: 1000,
@@ -70,7 +69,6 @@ export const actions = {
       params: listQuery
     })
     commit('SET_VALUE_COMPETITIONS', competitions)
-    // commit('SET_SELECTED_COMPETITIONS', competitions[0].league_name)
   }
 }
 

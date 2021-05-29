@@ -2,14 +2,23 @@
   <v-container>
     <v-layout align-center justify-center>
       <v-flex xs6>
-      <v-form ref="form" @keyup.native.enter="onSubmit" v-model="valid" lazy-validation @submit="onSubmit" action="#" method="post">
-        <v-card class="elevation-12">
-          <v-toolbar dark color="yellow">
-            <v-toolbar-title>Введите данные для входа в личный кабинет</v-toolbar-title>
-            <v-spacer />
-          </v-toolbar>
-          <v-card-text>
-            
+        <v-form
+          ref="form"
+          @keyup.native.enter="onSubmit"
+          v-model="valid"
+          lazy-validation
+          @submit="onSubmit"
+          action="#"
+          method="post"
+        >
+          <v-card class="elevation-12">
+            <v-toolbar dark color="yellow">
+              <v-toolbar-title
+                >Введите данные для входа в личный кабинет</v-toolbar-title
+              >
+              <v-spacer />
+            </v-toolbar>
+            <v-card-text>
               <v-text-field
                 color="yellow"
                 v-model="email"
@@ -42,26 +51,33 @@
                 @verify="onVerify"
                 @expired="onExpired"
               />
-           
-          </v-card-text>
-          <v-card-actions>
-            <v-tooltip bottom>
-              <v-btn slot="activator" :loading="loading" type="submit" color="success" @click="onSubmit">Войти</v-btn>
-              <span>Вход в личный кабинет</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-              <v-btn
-                slot="activator"
-                class="ml-2"
-                color="yellow"
-                to="/registration"
-                @click="Registration"
-              >Регистрация</v-btn>
-              <span>Регистрация для входа в личный кабинет</span>
-            </v-tooltip>
-          </v-card-actions>
-        </v-card>
-      </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-tooltip bottom>
+                <v-btn
+                  slot="activator"
+                  :loading="loading"
+                  type="submit"
+                  color="success"
+                  @click="onSubmit"
+                  >Войти</v-btn
+                >
+                <span>Вход в личный кабинет</span>
+              </v-tooltip>
+              <v-tooltip bottom>
+                <v-btn
+                  slot="activator"
+                  class="ml-2"
+                  color="yellow"
+                  to="/registration"
+                  @click="Registration"
+                  >Регистрация</v-btn
+                >
+                <span>Регистрация для входа в личный кабинет</span>
+              </v-tooltip>
+            </v-card-actions>
+          </v-card>
+        </v-form>
       </v-flex>
     </v-layout>
   </v-container>
@@ -121,7 +137,7 @@ export default {
       this.$router.push('/registration')
     },
     onSubmit: function () {
-      // debugger; // eslint-disable-line
+      // // debugger; // eslint-disable-line
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.$refs.invisibleRecaptcha.execute()
@@ -131,7 +147,7 @@ export default {
     },
     onVerify: async function (response) {
       try {
-        debugger; // eslint-disable-line
+        // debugger; // eslint-disable-line
         this.loading = true
         await this.$auth.loginWith('local', {
           data: {
@@ -164,4 +180,3 @@ export default {
   }
 }
 </script>
-

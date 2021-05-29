@@ -26,13 +26,22 @@
                   :auto-update="formatDate.autoUpdate"
                 />
                 <span
-                  v-else-if="fruit.nameField === 'MatchName'"
+                  v-else-if="fruit.nameField === 'matchName'"
                   style="margin-left: 10px;"
-                  >{{ scope.row[fruit.nameField] }}</span
+                  >{{ scope.row[fruit.nameField] }}
+                  <br />
+                  <a
+                    href="#"
+                    style="color: yellow;"
+                    @click="newPrognoz(scope.row, fruit.nameField)"
+                    >прогнозы</a
+                  >
+                </span>
+                <span v-else style="margin-left: 10px;"
+                  >{{ scope.row[fruit.nameField] }}
+
+                  ></span
                 >
-                <span v-else style="margin-left: 10px;">{{
-                  scope.row[fruit.nameField]
-                }}</span>
               </template>
             </el-table-column>
           </template>
@@ -57,6 +66,16 @@
 <script>
 export default {
   name: 'list-prognozs',
+  props: {
+    selectedCountry: {
+      type: String,
+      default: ''
+    },
+    selectedCompetitions: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       prGetList: false,
@@ -217,23 +236,6 @@ export default {
   computed: {
     LangFormThead: function () {
       return this.$store.state.formThead
-    },
-    selectedCompetitions: {
-      get () {
-        return this.$store.getters['addPrognoz/getSelectedCompetitions']
-      },
-      set (newValue) {
-        this.$store.dispatch('addPrognoz/setSelectedCompetitions', newValue)
-      }
-    },
-    selectedCountry: {
-      get () {
-        return this.$store.getters['addPrognoz/getSelectedCountry']
-      },
-      async set (newValue) {
-        await this.$store.dispatch('addPrognoz/setSelectedCountry', newValue)
-        await this.$store.dispatch('addPrognoz/getValueCompetitions')
-      }
     }
   },
   mounted () {
@@ -241,6 +243,15 @@ export default {
     this.getList()
   },
   methods: {
+    newPrognoz (row, nameField) {
+      debugger
+      const oddsValue = {
+        odds: row,
+        nameOdds: row[nameField]
+      }
+      debugger
+      this.$emit('newPrognoz', oddsValue)
+    },
     async getList () {
       this.prGetList = true
 
@@ -251,7 +262,7 @@ export default {
       const { jsonOdds, total } = await this.$axios.$get('/api/MordaOdds', {
         params: this.listQuery
       })
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
       let deserOdds = jsonOdds.map((v) => {
         let parseData = JSON.parse(v.Data)
         parseData.matchName = v.MatchName

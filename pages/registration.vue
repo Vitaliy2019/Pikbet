@@ -26,9 +26,10 @@
                   @input="$v.email.$touch()"
                   @blur="$v.email.$touch()"
                 ></v-text-field>
-                <span
-                  class="caption grey--text text--darken-1"
-                >Это адрес электронной почты, который вы будете использовать для входа в свою учетную запись PIKBET.</span>
+                <span class="caption grey--text text--darken-1"
+                  >Это адрес электронной почты, который вы будете использовать
+                  для входа в свою учетную запись PIKBET.</span
+                >
               </v-card-text>
             </v-window-item>
 
@@ -75,17 +76,26 @@
                   @change="$v.checkbox1.$touch()"
                   @blur="$v.checkbox1.$touch()"
                 />
-                <span
-                  class="caption grey--text text--darken-1"
-                >Пожалуйста введите пароль для вашего аккаунта</span>
+                <span class="caption grey--text text--darken-1"
+                  >Пожалуйста введите пароль для вашего аккаунта</span
+                >
               </v-card-text>
             </v-window-item>
 
             <v-window-item :value="3">
               <div class="pa-3 text-xs-center">
-                <v-img class="mb-3" contain height="128" src="/logo.png"></v-img>
-                <h3 class="title font-weight-light mb-2">Добро пожаловать в PIKBET</h3>
-                <p :class="[isActive ? 'activeClass' : 'errorClass']">{{message}}</p>
+                <v-img
+                  class="mb-3"
+                  contain
+                  height="128"
+                  src="/logo.png"
+                ></v-img>
+                <h3 class="title font-weight-light mb-2">
+                  Добро пожаловать в PIKBET
+                </h3>
+                <p :class="[isActive ? 'activeClass' : 'errorClass']">
+                  {{ message }}
+                </p>
               </div>
             </v-window-item>
           </v-window>
@@ -101,7 +111,8 @@
               class="black--text"
               depressed
               @click="steps"
-            >Следующий</v-btn>
+              >Следующий</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-form>
@@ -203,7 +214,7 @@ export default {
   methods: {
     async steps () {
       this.$v.$touch()
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
       if (this.step === 1 && this.$v.email.required) {
         this.step++
       } else if (this.step === 2 && !this.$v.$invalid) {
